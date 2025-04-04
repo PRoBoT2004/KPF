@@ -117,58 +117,63 @@ const HeroSection = () => {
       </div>
 
       {/* Mobile Popup for Sneak Peek */}
-      {showPopup && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-black bg-opacity-90">
-          <div className="relative w-full h-full max-w-[95vw] max-h-[95vh] flex flex-col items-center justify-center">
-            {/* Scrollable image inside fixed container */}
-            <div
-              ref={boxRef}
-              className="w-full h-full overflow-y-scroll bg-black border border-gray-600 rounded-lg"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              <img src={images[currentIndex]} alt="Mobile UI Preview" className="object-contain w-full h-auto" />
-            </div>
+      {/* Mobile Popup for Sneak Peek */}
+{/* Mobile Popup for Sneak Peek */}
+{showPopup && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90">
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                    w-[90vw] max-w-[90%] max-h-[90vh] flex flex-col items-center justify-center 
+                    rounded-lg border border-gray-600 bg-black overflow-hidden">
+      
+      {/* Scrollable Image Inside Fixed Container */}
+      <div
+        ref={boxRef}
+        className="w-full h-full overflow-y-scroll"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <img src={images[currentIndex]} alt="Mobile UI Preview" className="object-contain w-full h-auto" />
+      </div>
 
-            {/* Close Button (absolute inside popup, now responsive) */}
-            <button
-              onClick={() => setShowPopup(false)}
-              className="absolute z-10 px-3 py-1 text-sm font-bold text-black bg-white rounded-full shadow-md top-3 right-3 sm:px-4 sm:py-2 md:px-5 md:py-3 sm:text-base md:text-lg"
-            >
-              ✕
-            </button>
+      {/* Close Button (Fixed in Pop-up, Not Image) */}
+      <button
+        onClick={() => setShowPopup(false)}
+        className="absolute px-4 py-2 text-lg font-bold text-black bg-white rounded-full shadow-md top-3 right-3"
+      >
+        ✕
+      </button>
 
-            {/* Navigation Buttons (absolute inside popup, now responsive) */}
-            <button
-              onClick={prevImage}
-              className="absolute z-10 px-4 py-2 text-sm text-white transform -translate-y-1/2 rounded-full top-1/2 left-4 bg-white/30 sm:px-5 sm:py-3 md:px-6 md:py-4 hover:bg-white/50 sm:text-base md:text-lg"
-            >
-              ◀
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute z-10 px-4 py-2 text-sm text-white transform -translate-y-1/2 rounded-full top-1/2 right-4 bg-white/30 sm:px-5 sm:py-3 md:px-6 md:py-4 hover:bg-white/50 sm:text-base md:text-lg"
-            >
-              ▶
-            </button>
+      {/* Navigation Buttons (Fixed in Pop-up, Not Image) */}
+      <button
+        onClick={prevImage}
+        className="absolute px-5 py-3 text-white transform -translate-y-1/2 rounded-full left-4 top-1/2 bg-white/30 hover:bg-white/50"
+      >
+        ◀
+      </button>
+      <button
+        onClick={nextImage}
+        className="absolute px-5 py-3 text-white transform -translate-y-1/2 rounded-full right-4 top-1/2 bg-white/30 hover:bg-white/50"
+      >
+        ▶
+      </button>
 
-            {/* Dot Navigation (absolute inside popup, now responsive) */}
-            <div className="absolute z-10 flex gap-2 transform -translate-x-1/2 bottom-6 left-1/2">
-              {images.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 rounded-full transition-all ${
-                    currentIndex === index
-                      ? "bg-orange-500 scale-110"
-                      : "bg-gray-400 hover:bg-gray-300"
-                  }`}
-                  onClick={() => selectImage(index)}
-                ></button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Dot Navigation (Fixed in Pop-up, Not Image) */}
+      <div className="absolute flex gap-2 bottom-6">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`w-3 h-3 rounded-full transition-all ${
+              currentIndex === index ? "bg-orange-500 scale-110" : "bg-gray-400 hover:bg-gray-300"
+            }`}
+            onClick={() => selectImage(index)}
+          ></button>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
+
+
     </section>
   );
 };
