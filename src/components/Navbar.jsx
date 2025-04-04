@@ -8,9 +8,9 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
-        setIsShrunk(true); // Scrolling Down -> Show Mini Logo Navbar, Hide Full Navbar
+        setIsShrunk(true);
       } else {
-        setIsShrunk(false); // Scrolling Up -> Show Full Navbar, Hide Mini Logo
+        setIsShrunk(false);
       }
       setLastScrollY(window.scrollY);
     };
@@ -19,7 +19,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // Function to scroll smoothly to the top
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -29,40 +28,42 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Full Navbar (Balanced Spacing) */}
+      {/* Full Navbar */}
       <header
-        className={`fixed top-4 left-1/2 transform -translate-x-1/2 px-12 py-5 bg-white/80 backdrop-blur-md rounded-full shadow-lg z-50 transition-all duration-700 ease-in-out ${
+        className={`fixed top-4 left-1/2 transform -translate-x-1/2 px-6 py-4 bg-white/80 backdrop-blur-md rounded-full shadow-lg z-50 transition-all duration-700 ease-in-out max-w-[95%] w-auto ${
           isShrunk ? "opacity-0 -translate-y-5 pointer-events-none" : "opacity-100 translate-y-0"
         }`}
       >
-        <nav className="flex items-center justify-between w-full mx-auto max-w-7xl">
-          {/* Logo in Full Navbar */}
-          <Link to="/" onClick={scrollToTop} className="text-2xl font-bold text-blue-700 transition-all duration-700 cursor-pointer">
+        <nav className="flex items-center justify-between space-x-14">
+          {/* Logo */}
+          <Link
+            to="/"
+            onClick={scrollToTop}
+            className="text-2xl font-bold text-orange-600 transition-all duration-700 cursor-pointer"
+          >
             Krishna
           </Link>
 
-          {/* Navigation Links (Properly Spaced) */}
-          <div className="flex space-x-14"> {/* Increased spacing between links */}
-            <Link
-              to="/works"
-              className="font-medium text-gray-700 transition duration-500 text-md hover:text-blue-500 hover:underline underline-offset-4"
-            >
-              Works
-            </Link>
-            <Link
-              to="/contact"
-              className="font-medium text-gray-700 transition duration-500 text-md hover:text-blue-500 hover:underline underline-offset-4"
-            >
-              Contact
-            </Link>
-          </div>
+          {/* Simple Links */}
+          <Link
+            to="/works"
+            className="font-medium text-gray-700 transition duration-500 text-md hover:text-orange-500 hover:underline underline-offset-4"
+          >
+            Works
+          </Link>
+          <Link
+            to="/contact"
+            className="font-medium text-gray-700 transition duration-500 text-md hover:text-orange-500 hover:underline underline-offset-4"
+          >
+            Contact
+          </Link>
         </nav>
       </header>
 
-      {/* Mini Logo Navbar (Perfectly Positioned) */}
+      {/* Mini Logo Navbar */}
       <div
         onClick={scrollToTop}
-        className={`fixed top-4 left-6 z-50 text-3xl font-bold text-blue-700 transition-all duration-700 ease-in-out cursor-pointer ${
+        className={`fixed top-4 left-6 z-50 text-3xl font-bold text-orange-600 transition-all duration-700 ease-in-out cursor-pointer ${
           isShrunk ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-5 scale-95 pointer-events-none"
         }`}
       >

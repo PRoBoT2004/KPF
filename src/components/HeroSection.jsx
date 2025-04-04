@@ -14,7 +14,7 @@ const HeroSection = () => {
     const handleScroll = (event) => {
       if (isHovered && boxRef.current) {
         event.preventDefault();
-        boxRef.current.scrollTop += event.deltaY * 0.5;
+        boxRef.current.scrollTop += event.deltaY * 0.3; // Slightly slower scrolling for better UX
       }
     };
 
@@ -35,28 +35,22 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative flex flex-col w-screen h-screen sm:flex-row">
+    <section id="hero" className="relative flex flex-col w-screen h-screen overflow-hidden bg-black sm:flex-row">
       {/* Left Content */}
-      <div className="flex flex-col justify-center w-full h-full px-6 text-white bg-black sm:w-1/2 sm:px-16">
-        <h1 className="mb-1 text-3xl font-bold sm:mb-2 sm:text-5xl md:text-6xl">
-          I am Krishna,
-        </h1>
-        <h2 className="mb-4 text-2xl font-semibold text-orange-500 sm:mb-6 sm:text-4xl">
-          UI/UX Designer
-        </h2>
-        <p className="mb-6 text-base font-medium text-gray-300 sm:mb-8 sm:text-lg">
-          Designing Experiences, Not Just Screens
-        </p>
-        <div className="flex flex-col gap-4 sm:flex-row">
+      <div className="flex flex-col justify-center w-full h-full px-6 text-white sm:w-1/2 sm:px-16">
+        <h1 className="mb-2 text-3xl font-bold sm:text-5xl md:text-6xl text-shadow-md">I am Krishna,</h1>
+        <h2 className="mb-6 text-2xl font-semibold text-orange-500 sm:text-4xl">UI/UX Designer</h2>
+        <p className="mb-8 text-lg font-medium text-gray-300">Designing Experiences, Not Just Screens</p>
+        <div className="flex gap-4 sm:flex-row">
           <button
             onClick={() => navigate("/works")}
-            className="px-5 py-3 text-base font-semibold transition-all bg-orange-500 rounded-lg shadow-md sm:text-lg hover:bg-orange-600 hover:scale-105"
+            className="px-5 py-3 text-lg font-semibold transition-transform duration-300 transform bg-orange-500 rounded-lg shadow-md hover:scale-105 hover:bg-orange-600"
           >
             View My Work
           </button>
           <button
             onClick={() => navigate("/contact")}
-            className="px-5 py-3 text-base font-semibold transition-all bg-transparent border-2 border-white rounded-lg shadow-md sm:text-lg hover:bg-white hover:text-black hover:scale-105"
+            className="px-5 py-3 text-lg font-semibold transition-transform duration-300 transform bg-transparent border-2 border-white rounded-lg shadow-md hover:scale-105 hover:bg-white hover:text-black"
           >
             Contact Me
           </button>
@@ -66,7 +60,7 @@ const HeroSection = () => {
         <div className="mt-6 sm:hidden">
           <button
             onClick={() => setShowPopup(true)}
-            className="px-5 py-2 text-sm font-medium text-white transition-all border border-gray-400 rounded-md hover:bg-white hover:text-black"
+            className="px-5 py-3 text-lg font-medium text-white transition duration-300 border-2 border-gray-400 rounded-md hover:bg-white hover:text-black"
           >
             👀 Sneak Peek
           </button>
@@ -83,7 +77,8 @@ const HeroSection = () => {
         <img
           src={images[currentIndex]}
           alt="Scrollable UI Preview"
-          className="w-full h-auto"
+          loading="lazy"  // Lazy loading added here
+          className="w-full h-auto transition-transform duration-500 ease-in-out"
         />
       </div>
 
@@ -117,63 +112,56 @@ const HeroSection = () => {
       </div>
 
       {/* Mobile Popup for Sneak Peek */}
-      {/* Mobile Popup for Sneak Peek */}
-{/* Mobile Popup for Sneak Peek */}
-{showPopup && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90">
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                    w-[90vw] max-w-[90%] max-h-[90vh] flex flex-col items-center justify-center 
-                    rounded-lg border border-gray-600 bg-black overflow-hidden">
-      
-      {/* Scrollable Image Inside Fixed Container */}
-      <div
-        ref={boxRef}
-        className="w-full h-full overflow-y-scroll"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <img src={images[currentIndex]} alt="Mobile UI Preview" className="object-contain w-full h-auto" />
-      </div>
+      {showPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90">
+          <div className="relative w-[90vw] max-w-[90%] max-h-[90vh] flex flex-col items-center justify-center rounded-lg border border-gray-600 bg-black overflow-hidden">
+            {/* Scrollable Image Inside Fixed Container */}
+            <div
+              ref={boxRef}
+              className="w-full h-full overflow-y-scroll"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <img src={images[currentIndex]} alt="Mobile UI Preview" className="object-contain w-full h-auto" loading="lazy" />
+            </div>
 
-      {/* Close Button (Fixed in Pop-up, Not Image) */}
-      <button
-        onClick={() => setShowPopup(false)}
-        className="absolute px-4 py-2 text-lg font-bold text-black bg-white rounded-full shadow-md top-3 right-3"
-      >
-        ✕
-      </button>
+            {/* Close Button (Fixed in Pop-up, Not Image) */}
+            <button
+              onClick={() => setShowPopup(false)}
+              className="absolute px-4 py-2 text-lg font-bold text-black bg-white rounded-full shadow-md top-3 right-3"
+            >
+              ✕
+            </button>
 
-      {/* Navigation Buttons (Fixed in Pop-up, Not Image) */}
-      <button
-        onClick={prevImage}
-        className="absolute px-5 py-3 text-white transform -translate-y-1/2 rounded-full left-4 top-1/2 bg-white/30 hover:bg-white/50"
-      >
-        ◀
-      </button>
-      <button
-        onClick={nextImage}
-        className="absolute px-5 py-3 text-white transform -translate-y-1/2 rounded-full right-4 top-1/2 bg-white/30 hover:bg-white/50"
-      >
-        ▶
-      </button>
+            {/* Navigation Buttons (Fixed in Pop-up, Not Image) */}
+            <button
+              onClick={prevImage}
+              className="absolute px-5 py-3 text-white transform -translate-y-1/2 rounded-full left-4 top-1/2 bg-white/30 hover:bg-white/50"
+            >
+              ◀
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute px-5 py-3 text-white transform -translate-y-1/2 rounded-full right-4 top-1/2 bg-white/30 hover:bg-white/50"
+            >
+              ▶
+            </button>
 
-      {/* Dot Navigation (Fixed in Pop-up, Not Image) */}
-      <div className="absolute flex gap-2 bottom-6">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 rounded-full transition-all ${
-              currentIndex === index ? "bg-orange-500 scale-110" : "bg-gray-400 hover:bg-gray-300"
-            }`}
-            onClick={() => selectImage(index)}
-          ></button>
-        ))}
-      </div>
-    </div>
-  </div>
-)}
-
-
+            {/* Dot Navigation (Fixed in Pop-up, Not Image) */}
+            <div className="absolute flex gap-2 bottom-6">
+              {images.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    currentIndex === index ? "bg-orange-500 scale-110" : "bg-gray-400 hover:bg-gray-300"
+                  }`}
+                  onClick={() => selectImage(index)}
+                ></button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

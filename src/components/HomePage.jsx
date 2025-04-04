@@ -14,12 +14,17 @@ const HomePage = () => {
 
   useEffect(() => {
     let index = 0;
+    let isMounted = true;
     const interval = setInterval(() => {
+      if (!isMounted) return;
       setText(fullText.slice(0, index));
       index++;
       if (index > fullText.length) clearInterval(interval);
     }, typingSpeed);
-    return () => clearInterval(interval);
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, []);
 
   const controls = useAnimation();
@@ -32,7 +37,8 @@ const HomePage = () => {
   }, [inView, controls]);
 
   return (
-    <div className="w-screen h-auto text-white bg-slate-950">
+    <div className="w-screen h-screen overflow-y-scroll text-white bg-slate-950 snap-y snap-mandatory scroll-smooth">
+
       <HeroSection />
       <AboutSection text={text} controls={controls} ref={ref} />
       <HighlightedWorks />
