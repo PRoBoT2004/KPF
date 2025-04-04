@@ -12,13 +12,15 @@ const WorkSection = ({ title, description, videoSrc, imgSrc, reverse, link }) =>
 
   return (
     <motion.section
-      className={`flex ${reverse ? 'flex-row-reverse' : ''} items-center h-screen px-20 bg-black scroll-snap-start`}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={sectionVariants}
-    >
-      <div className="relative z-0 w-3/5">
+  className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center justify-center min-h-screen w-full px-4 py-16 sm:px-8 lg:px-20 bg-black scroll-snap-start gap-10 overflow-hidden`}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.3 }}
+  variants={sectionVariants}
+>
+
+      {/* Media Content */}
+      <div className="w-full lg:w-3/5">
         {videoSrc ? (
           <motion.video
             className="object-cover w-full h-full transform scale-160 rounded-xl transition-transform duration-700 hover:scale-[1.7]"
@@ -26,7 +28,7 @@ const WorkSection = ({ title, description, videoSrc, imgSrc, reverse, link }) =>
             loop
             muted
             playsInline
-            whileHover={{ scale: 1.2 }}
+            whileHover={{ scale: 1.05 }}
           >
             <source src={videoSrc} type="video/mp4" />
           </motion.video>
@@ -34,18 +36,19 @@ const WorkSection = ({ title, description, videoSrc, imgSrc, reverse, link }) =>
           <motion.img
             src={imgSrc}
             alt={title}
-            className="object-cover w-full h-full transition-transform duration-700 transform scale-110 rounded-xl hover:scale-125"
-            whileHover={{ scale: 1.2 }}
+            className="object-cover w-full h-auto max-w-full overflow-hidden transition-transform duration-700 rounded-xl hover:scale-105"
+            whileHover={{ scale: 1.05 }}
           />
         )}
       </div>
 
-      <div className="z-10 w-2/5 pl-8 text-white">
-        <motion.h1 className="mb-5 text-4xl font-bold">{title}</motion.h1>
-        <motion.p className="mb-5 text-lg">{description}</motion.p>
+      {/* Text Content */}
+      <div className="z-10 w-full text-center text-white lg:w-2/5 lg:text-left">
+        <motion.h1 className="mb-4 text-2xl font-bold leading-tight sm:text-3xl lg:text-4xl">{title}</motion.h1>
+        <motion.p className="mb-6 text-sm text-gray-300 sm:text-base lg:text-lg">{description}</motion.p>
         <motion.button
           onClick={() => navigate(link)}
-          className="px-6 py-3 text-lg font-semibold text-white transition-all bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 hover:scale-105"
+          className="px-6 py-3 text-sm font-semibold text-white transition-transform bg-orange-500 rounded-lg shadow-md sm:text-base lg:text-lg hover:bg-orange-600 hover:scale-105"
           whileHover={{ scale: 1.05 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >

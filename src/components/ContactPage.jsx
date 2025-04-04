@@ -10,34 +10,31 @@ const ContactMe = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
 
-  // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate form submission (replace with your actual backend logic if necessary)
     setTimeout(() => {
       setIsSubmitting(false);
       setResponseMessage("Thanks for reaching out! We'll get back to you shortly.");
-    }, 2000); // Simulating an API request delay
+    }, 2000);
   };
 
   return (
     <section
       id="contact"
-      className="relative flex flex-col items-center justify-center w-screen h-screen px-8 py-24 text-white bg-linear-to-t from-black to-slate-950"
+      className="relative flex flex-col items-center justify-center w-full min-h-screen px-6 py-16 text-white bg-gradient-to-t from-black to-slate-950"
     >
+      {/* Heading */}
       <motion.h2
-        className="mb-8 text-5xl font-bold tracking-wide text-center"
+        className="mb-8 text-3xl font-bold tracking-wide text-center sm:text-4xl md:text-5xl"
         initial={{ opacity: 0, y: -50 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 1 } }}
         viewport={{ once: true }}
@@ -45,9 +42,9 @@ const ContactMe = () => {
         Get in Touch
       </motion.h2>
 
-      {/* Contact Form */}
+      {/* Form Card */}
       <motion.div
-        className="w-full max-w-lg p-8 border shadow-lg rounded-xl bg-white/10 backdrop-blur-md border-white/20"
+        className="w-full max-w-md p-6 border shadow-lg sm:max-w-lg sm:p-8 rounded-xl bg-white/10 backdrop-blur-md border-white/20"
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1, transition: { duration: 1 } }}
         viewport={{ once: true }}
@@ -59,7 +56,7 @@ const ContactMe = () => {
             value={formData.name}
             onChange={handleChange}
             placeholder="Your Name"
-            className="w-full px-4 py-3 transition-all bg-transparent border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="w-full px-4 py-3 text-sm transition-all bg-transparent border border-gray-500 rounded-md sm:text-base focus:outline-none focus:ring-2 focus:ring-orange-500"
             whileFocus={{ scale: 1.05 }}
             required
           />
@@ -69,7 +66,7 @@ const ContactMe = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Your Email"
-            className="w-full px-4 py-3 transition-all bg-transparent border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="w-full px-4 py-3 text-sm transition-all bg-transparent border border-gray-500 rounded-md sm:text-base focus:outline-none focus:ring-2 focus:ring-orange-500"
             whileFocus={{ scale: 1.05 }}
             required
           />
@@ -79,14 +76,14 @@ const ContactMe = () => {
             value={formData.message}
             onChange={handleChange}
             placeholder="Your Message"
-            className="w-full px-4 py-3 transition-all bg-transparent border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="w-full px-4 py-3 text-sm transition-all bg-transparent border border-gray-500 rounded-md sm:text-base focus:outline-none focus:ring-2 focus:ring-orange-500"
             whileFocus={{ scale: 1.05 }}
             required
           ></motion.textarea>
 
           <motion.button
             type="submit"
-            className="w-full px-6 py-3 text-lg font-semibold text-black transition-all bg-orange-500 rounded-md hover:bg-orange-600 hover:scale-105"
+            className="w-full px-6 py-3 text-sm font-semibold text-black transition-all bg-orange-500 rounded-md sm:text-base hover:bg-orange-600 hover:scale-105"
             whileHover={{ scale: 1.1 }}
             disabled={isSubmitting}
           >
@@ -94,9 +91,8 @@ const ContactMe = () => {
           </motion.button>
         </form>
 
-        {/* Success message after form submission */}
         {responseMessage && (
-          <div className="mt-4 text-lg text-center text-gray-200">
+          <div className="mt-4 text-sm text-center text-gray-200 sm:text-base">
             {responseMessage}
           </div>
         )}
