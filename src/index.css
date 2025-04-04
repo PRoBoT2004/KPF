@@ -1,0 +1,85 @@
+@import "tailwindcss";
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+.particle {
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: floatUp 6s linear infinite;
+  }
+  
+  .particle.delay-1000 { animation-delay: 1s; left: 20%; }
+  .particle.delay-2000 { animation-delay: 2s; left: 70%; }
+  .particle.delay-3000 { animation-delay: 3s; left: 35%; }
+  .particle.delay-4000 { animation-delay: 4s; left: 80%; }
+  .particle.delay-5000 { animation-delay: 5s; left: 10%; }
+  
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(0.5); opacity: 0.7; }
+    100% { transform: translateY(-800px) scale(1); opacity: 0; }
+  }
+  .group-1171274970,
+  .group-1171274970 * {
+    box-sizing: border-box;
+  }
+  
+  .group-1171274970 {
+    height: 420px;
+    position: relative;
+  }
+  
+  .rectangle-26 {
+    background: #d9d9d9;
+    border-radius: 47px;
+    width: 355px;
+    height: 420px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+  
+  .js-1 {
+    border-radius: 22px;
+    width: 298px;
+    height: 298px;
+    position: absolute;
+    left: 29px;
+    top: 22px;
+    object-fit: cover;
+    aspect-ratio: 1;
+  }
+  
+  .java-script {
+    color: #000000;
+    text-align: left;
+    font-family: "Inter-Regular", sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    position: absolute;
+    left: 58px;
+    top: 349px;
+  }
+  @keyframes scroll {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+  
+  @keyframes scrollReverse {
+    from { transform: translateY(-50%); }
+    to { transform: translateY(0); }
+  }
+  
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
+  
+  .animate-scroll-slow {
+    animation: scrollReverse 30s linear infinite;
+  }
+  
