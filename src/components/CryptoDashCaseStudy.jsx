@@ -100,7 +100,7 @@ const CryptoDashCaseStudy = () => {
               🚀 Live Dashboard
             </a>
             <a
-              href="https://github.com/yourusername/crypto-dash" // replace with actual repo if applicable
+              href="https://github.com/PRoBoT2004/CryptoDash" // replace with actual repo if applicable
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 text-base font-semibold text-white transition-transform bg-gray-700 rounded-lg hover:bg-gray-600 hover:scale-105"
