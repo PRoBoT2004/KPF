@@ -15,7 +15,7 @@ const CryptoDashCaseStudy = () => {
         loop
         muted
         playsInline
-        poster="/assets/ok.avif"
+        poster="/assets/ok.jpg"
       >
         <source src="/assets/bg-video.mp4" type="video/mp4" />
       </video>
