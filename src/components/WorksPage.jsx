@@ -12,13 +12,12 @@ const WorkSection = ({ title, description, videoSrc, imgSrc, reverse, link }) =>
 
   return (
     <motion.section
-  className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center justify-center min-h-screen w-full px-4 py-16 sm:px-8 lg:px-20 bg-black scroll-snap-start gap-10 overflow-hidden`}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.3 }}
-  variants={sectionVariants}
->
-
+      className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center justify-center min-h-screen w-full px-4 py-16 sm:px-8 lg:px-20 bg-black scroll-snap-start gap-10 overflow-hidden`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={sectionVariants}
+    >
       {/* Media Content */}
       <div className="w-full lg:w-3/5">
         {videoSrc ? (
@@ -66,6 +65,25 @@ const WorkPage = () => {
 
   return (
     <div className="overflow-x-hidden font-sans bg-black scroll-smooth">
+      {/* New Projects on top */}
+
+      <WorkSection
+        title="CryptoDash"
+        description="A live cryptocurrency dashboard demonstrating real-time API integration and responsive UI."
+        imgSrc="/assets/4.png"
+        link="/works/cryptodash-case-study"
+      />
+
+      <WorkSection
+        title="DripStride"
+        description="An e-commerce sneaker store showcasing component-based frontend architecture and smooth user experience."
+        imgSrc="/assets/5.png"
+        link="/works/dripstride-case-study"
+        reverse
+      />
+
+      {/* Existing Projects */}
+
       <WorkSection
         title="Color Pencil"
         description="Explore how Color Pencil brings creativity to the forefront through engaging UI/UX design."
@@ -101,7 +119,7 @@ const WorkPage = () => {
         description="OnGo simplifies commutes with intuitive mobile UX and sharp branding."
         imgSrc="/assets/ongo.png"
         link="/works/ongo-case-study"
-        reverse
+        
       />
     </div>
   );

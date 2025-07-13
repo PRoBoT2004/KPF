@@ -3,6 +3,22 @@ import { motion } from "framer-motion";
 
 const caseStudies = [
   {
+    id: "cryptodash",
+    title: "CryptoDash",
+    description: "A live cryptocurrency dashboard demonstrating real-time API integration and responsive UI.",
+    image: "/assets/4.png",
+    route: "/works/cryptodash-case-study",
+    liveLink: "https://crypto-dash-blush-three.vercel.app/",
+  },
+  {
+    id: "dripstride",
+    title: "DripStride",
+    description: "An e-commerce sneaker store showcasing component-based frontend architecture and smooth user experience.",
+    image: "/assets/5.png",
+    route: "/works/dripstride-case-study",
+    liveLink: "https://dripstride.vercel.app/",
+  },
+  {
     id: "colorpencil",
     title: "Color Pencil",
     description: "Revamping an educational platform with modern UI/UX principles.",
@@ -18,14 +34,7 @@ const caseStudies = [
     route: "/works/launchpad-case-study",
     figmaLink: "https://www.figma.com/design/DsGMoqInLzYyDGChRvXSDa/Launchpad?node-id=0-1&t=6xeU81sgbfEAcuWM-1",
   },
-  {
-    id: "enda",
-    title: "Enda",
-    description: "Designing a mobile app for a sustainable sportswear brand.",
-    image: "/assets/3.png",
-    route: "/works/enda-case-study",
-    figmaLink: "https://www.figma.com/design/Pv13MUB4JVLSDxbbf5b5hn/Enda?node-id=0-1&t=EohTDFrhTR2BCFXp-1",
-  },
+  
 ];
 
 const HighlightedWorks = () => {
@@ -51,7 +60,9 @@ const HighlightedWorks = () => {
               src={project.image}
               alt={project.title}
               className="w-full max-w-[800px] object-contain rounded-xl shadow-xl cursor-pointer transition-transform duration-300 hover:scale-105"
-              onClick={() => window.open(project.figmaLink, "_blank")}
+              onClick={() =>
+                window.open(project.liveLink || project.figmaLink, "_blank")
+              }
             />
           </div>
 
