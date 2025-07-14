@@ -9,12 +9,18 @@ const skills = [
   { name: "Video Editing", level: "Beginner", percentage: 20, color: "red", shadow: "shadow-red-500" },
 ];
 
-// Tools Data
+// Tools Data - Mixed Frontend & Design
 const tools = [
-  { name: "Figma", icon: "/assets/figma.png", glow: "shadow-orange-500" },
-  { name: "Photoshop", icon: "/assets/photoshop.png", glow: "shadow-blue-500" },
-  { name: "Illustrator", icon: "/assets/illustrator.png", glow: "shadow-yellow-500" },
-  { name: "After Effects", icon: "/assets/aftereffects.png", glow: "shadow-purple-500" },
+  // Design Tools
+  { name: "Figma", icon: "/assets/figma.png", glow: "shadow-orange-500", category: "design" },
+  { name: "Photoshop", icon: "/assets/photoshop.png", glow: "shadow-blue-500", category: "design" },
+  { name: "Illustrator", icon: "/assets/illustrator.png", glow: "shadow-yellow-500", category: "design" },
+  { name: "After Effects", icon: "/assets/aftereffects.png", glow: "shadow-purple-500", category: "design" },
+  // Frontend Tools
+  { name: "React", icon: "/assets/React.png", glow: "shadow-blue-400", category: "frontend" },
+  { name: "JavaScript", icon: "/assets/JS.png", glow: "shadow-yellow-400", category: "frontend" },
+  { name: "Vue.js", icon: "/assets/Vue.png", glow: "shadow-green-400", category: "frontend" },
+  { name: "HTML", icon: "/assets/HTML.png", glow: "shadow-orange-400", category: "frontend" },
 ];
 
 const SkillsTools = () => {
@@ -69,16 +75,36 @@ const SkillsTools = () => {
       <div className="flex flex-col items-center w-full max-w-6xl mt-24">
         <h3 className="mb-10 text-3xl font-semibold text-center text-white sm:text-4xl">Tools I Use</h3>
 
-        <div className="grid w-full grid-cols-2 gap-10 px-4 sm:grid-cols-3 md:grid-cols-4 justify-items-center">
-          {tools.map((tool, index) => (
-            <motion.div 
-              key={index}
-              className={`relative flex flex-col items-center text-center bg-white/10 backdrop-blur-xl rounded-xl p-6 border border-white/20 transition-all transform hover:scale-110 hover:shadow-2xl hover:-translate-y-3 ${tool.glow}`}
-            >
-              <img src={tool.icon} alt={tool.name} className="w-20 h-20 transition-transform duration-300 sm:w-24 sm:h-24 hover:scale-110" />
-              <p className="mt-4 text-lg font-semibold text-white sm:text-xl">{tool.name}</p>
-            </motion.div>
-          ))}
+        {/* Design Tools */}
+        <div className="mb-12">
+          <h4 className="mb-6 text-xl font-medium text-center text-orange-400">Design Tools</h4>
+          <div className="grid w-full grid-cols-2 gap-8 px-4 sm:grid-cols-4 justify-items-center">
+            {tools.filter(tool => tool.category === 'design').map((tool, index) => (
+              <motion.div 
+                key={index}
+                className={`relative flex flex-col items-center text-center bg-white/10 backdrop-blur-xl rounded-xl p-6 border border-white/20 transition-all transform hover:scale-110 hover:shadow-2xl hover:-translate-y-3 ${tool.glow}`}
+              >
+                <img src={tool.icon} alt={tool.name} className="w-16 h-16 transition-transform duration-300 sm:w-20 sm:h-20 hover:scale-110" />
+                <p className="mt-3 text-sm font-semibold text-white sm:text-base">{tool.name}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Frontend Tools */}
+        <div>
+          <h4 className="mb-6 text-xl font-medium text-center text-blue-400">Frontend Tools</h4>
+          <div className="grid w-full grid-cols-2 gap-8 px-4 sm:grid-cols-4 justify-items-center">
+            {tools.filter(tool => tool.category === 'frontend').map((tool, index) => (
+              <motion.div 
+                key={index}
+                className={`relative flex flex-col items-center text-center bg-white/10 backdrop-blur-xl rounded-xl p-6 border border-white/20 transition-all transform hover:scale-110 hover:shadow-2xl hover:-translate-y-3 ${tool.glow}`}
+              >
+                <img src={tool.icon} alt={tool.name} className="w-16 h-16 transition-transform duration-300 sm:w-20 sm:h-20 hover:scale-110" />
+                <p className="mt-3 text-sm font-semibold text-white sm:text-base">{tool.name}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
