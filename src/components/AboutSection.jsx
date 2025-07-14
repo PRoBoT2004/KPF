@@ -16,7 +16,7 @@ const AboutSection = forwardRef(({ text, controls }, ref) => {
   return (
     <section
       id="about"
-  className="relative flex flex-col items-center justify-center w-screen min-h-screen px-6 py-16 space-y-12 bg-gradient-to-t from-slate-950 to-black lg:flex-row lg:space-y-0 lg:space-x-10 lg:px-16"
+      className="relative flex flex-col items-center justify-center w-screen min-h-screen px-6 py-16 space-y-12 bg-gradient-to-t from-slate-950 to-black lg:flex-row lg:space-y-0 lg:space-x-10 lg:px-16"
     >
       {/* Left Text */}
       <motion.div
@@ -31,7 +31,9 @@ const AboutSection = forwardRef(({ text, controls }, ref) => {
       >
         <h2 className="mb-4 text-4xl font-bold text-orange-500 sm:text-5xl">{text}</h2>
         <p className="text-base text-gray-300 sm:text-lg">
-          I specialize in crafting intuitive digital experiences that blend aesthetics with functionality. My goal is to make design seamless, engaging, and user-centric.
+          I specialize in crafting intuitive digital experiences that blend aesthetics with functionality, 
+          while bringing designs to life through clean, efficient code. My expertise spans both UI/UX design 
+          and frontend development, ensuring seamless, engaging, and user-centric digital solutions.
         </p>
       </motion.div>
 
@@ -67,15 +69,20 @@ const AboutSection = forwardRef(({ text, controls }, ref) => {
         <h2 className="mb-4 text-4xl font-bold sm:text-5xl">Work Experience</h2>
         <div className="relative mx-auto space-y-6 border-r-2 border-gray-600 lg:pr-6 lg:mx-0">
           {[
-            { title: "UI/UX Designer", company: "UMM Digital", duration: "2024 - Present" },
-            { title: "Freelance UI Designer", company: "Self-Employed", duration: "2023 - 2024" },
-            { title: "UI Designer", company: "College Project", duration: "2022 - 2023" },
+            { title: "Frontend Developer", company: "Prime Digitals", duration: "2024 - 2025", type: "frontend" },
+            { title: "UI/UX Designer", company: "UMM Digital", duration: "2024 - 2025", type: "design" },
+            { title: "Frontend Developer", company: "Freelance Projects", duration: "2023 - 2024", type: "frontend" },
+            { title: "UI Designer", company: "College Project", duration: "2022 - 2023", type: "design" },
           ].map((job, index) => (
             <motion.div
               key={index}
               className="transition-all cursor-pointer hover:scale-105"
             >
-              <h3 className="text-xl font-semibold text-orange-400 sm:text-2xl">{job.title}</h3>
+              <h3 className={`text-xl font-semibold sm:text-2xl ${
+                job.type === 'frontend' ? 'text-blue-400' : 'text-orange-400'
+              }`}>
+                {job.title}
+              </h3>
               <p className="text-sm text-gray-400">{job.company} | {job.duration}</p>
             </motion.div>
           ))}
