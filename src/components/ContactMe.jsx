@@ -136,7 +136,7 @@ const ContactMe = () => {
   };
 
   return (
-    <section id="contact" className="relative w-full min-h-screen bg-black overflow-hidden">
+    <section id="contact" className="relative w-full min-h-screen bg-black overflow-hidden gpu">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Animated Grid */}

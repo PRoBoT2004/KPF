@@ -112,7 +112,7 @@ const SkillsTools = () => {
   };
 
   return (
-    <section id="skills" className="relative w-full min-h-screen bg-black overflow-hidden">
+    <section id="skills" className="relative w-full min-h-screen bg-black overflow-hidden gpu">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Animated Grid */}

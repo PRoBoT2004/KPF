@@ -14,7 +14,7 @@ const AboutSection = forwardRef(({ text, controls }, ref) => {
   ];
 
   return (
-    <section id="about" className="relative w-full min-h-screen bg-black overflow-hidden">
+    <section id="about" className="relative w-full min-h-screen bg-black overflow-hidden gpu">
       {/* Background accents to match Hero */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Animated Grid (very subtle) */}

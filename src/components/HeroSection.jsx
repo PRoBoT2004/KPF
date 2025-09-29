@@ -246,7 +246,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative w-full min-h-[100svh] bg-black overflow-hidden">
+    <section className="relative w-full min-h-[100svh] bg-black overflow-hidden gpu">
       {/* Continuous Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Animated Grid - very subtle */}
