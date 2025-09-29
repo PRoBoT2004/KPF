@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import LazyMedia from './LazyMedia';
 
 const WorkSection = ({ title, description, videoSrc, imgSrc, reverse, link, index }) => {
   const navigate = useNavigate();
@@ -57,19 +56,26 @@ const WorkSection = ({ title, description, videoSrc, imgSrc, reverse, link, inde
                   </motion.span>
                 </div>
 
-                {/* Media Container - Lazy */}
-                <div className="relative z-10 rounded-2xl">
-                  <LazyMedia
-                    videoSrc={videoSrc}
-                    imgSrc={imgSrc}
-                    poster={imgSrc}
-                    alt={title}
-                    aspectClass="aspect-[4/3]"
-                    imgClassName="transition-all duration-300 group-hover:scale-105"
-                    videoClassName="transition-all duration-300 group-hover:scale-105"
-                    priority={false}
-                  />
-                  <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                {/* Media Container */}
+                <div className="relative z-10 overflow-hidden rounded-2xl aspect-[4/3] w-full">
+                  {videoSrc ? (
+                    <motion.video
+                      className="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-105"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    >
+                      <source src={videoSrc} type="video/mp4" />
+                    </motion.video>
+                  ) : (
+                    <motion.img
+                      src={imgSrc}
+                      alt={title}
+                      className="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-105"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 </div>
 
                 {/* Subtle inner soft vignette */}
@@ -288,8 +294,8 @@ const WorkPage = () => {
 
   return (
     <div className="relative w-full bg-black overflow-hidden gpu">
-      {/* Background Effects */}
-      <div className="fixed inset-0 pointer-events-none">
+      {/* Background Effects (scoped to this page only) */}
+      <div className="absolute inset-0 pointer-events-none">
         {/* Animated Grid */}
         <motion.div
           className="absolute inset-0"
