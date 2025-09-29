@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import LazyMedia from "./LazyMedia";
 
 const caseStudies = [
   {
@@ -201,18 +200,18 @@ const HighlightedWorks = () => {
                         </span>
                       </div>
 
-                      {/* Media Container - lazy image/video */}
-                      <div className="relative z-10 rounded-xl">
-                        <div onClick={() => window.open(project.liveLink || project.figmaLink, "_blank")}>
-                          <LazyMedia
-                            imgSrc={project.image}
-                            alt={project.title}
-                            aspectClass="aspect-[4/3]"
-                            imgClassName="cursor-pointer transition-all duration-500 group-hover:scale-105"
-                            priority={false}
-                          />
-                        </div>
-                        <div className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      {/* Media Container */}
+                      <div className="relative z-10 overflow-hidden rounded-xl aspect-[4/3] w-full">
+                        <motion.img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover object-center cursor-pointer transition-all duration-500 group-hover:scale-105"
+                          onClick={() =>
+                            window.open(project.liveLink || project.figmaLink, "_blank")
+                          }
+                          whileHover={{ scale: 1.05 }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
                       
                       {/* Subtle inner soft vignette */}
