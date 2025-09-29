@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import LazyMedia from './LazyMedia';
 
 const WorkSection = ({ title, description, videoSrc, imgSrc, reverse, link, index }) => {
   const navigate = useNavigate();
@@ -34,76 +35,14 @@ const WorkSection = ({ title, description, videoSrc, imgSrc, reverse, link, inde
               }}
               viewport={{ once: true }}
             >
-              <motion.div
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm w-full max-w-[600px] mx-auto"
-                whileHover={{ 
-                  y: -8,
-                  scale: 1.02,
-                }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-              >
-                {/* Continuous Rotating Border Animation */}
-                <motion.div
-                  className="absolute inset-0 rounded-3xl"
-                  style={{
-                    background: `conic-gradient(from ${index * 45}deg, 
-                      transparent 0deg, 
-                      rgba(255,255,255,0.15) 90deg, 
-                      transparent 180deg, 
-                      rgba(255,255,255,0.08) 270deg, 
-                      transparent 360deg)`,
-                  }}
-                  animate={{ rotate: 360 }}
-                  transition={{ 
-                    duration: 4,
-                    repeat: Infinity, 
-                    ease: "linear" 
-                  }}
-                />
-                
-                {/* Secondary rotating border */}
-                <motion.div
-                  className="absolute inset-0 rounded-3xl"
-                  style={{
-                    background: `conic-gradient(from ${-index * 60}deg, 
-                      transparent 0deg, 
-                      rgba(255,255,255,0.1) 120deg, 
-                      transparent 240deg, 
-                      rgba(255,255,255,0.05) 300deg, 
-                      transparent 360deg)`,
-                  }}
-                  animate={{ rotate: -360 }}
-                  transition={{ 
-                    duration: 5,
-                    repeat: Infinity, 
-                    ease: "linear" 
-                  }}
-                />
-                
-                {/* Inner border */}
-                <div className="absolute inset-[2px] rounded-3xl bg-black/80 backdrop-blur-sm" />
-                
-                {/* Sweeping light effect */}
-                <motion.div
-                  className="absolute inset-0 rounded-3xl"
-                  style={{
-                    background: `linear-gradient(${45 + index * 30}deg, 
-                      transparent 0%, 
-                      transparent 45%, 
-                      rgba(255,255,255,0.1) 50%, 
-                      transparent 55%, 
-                      transparent 100%)`,
-                  }}
-                  animate={{
-                    x: ["-100%", "200%"],
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    repeatDelay: 0.5,
-                    ease: "easeInOut",
-                  }}
-                />
+            <motion.div
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.02] p-6 backdrop-blur-sm w-full max-w-[600px] mx-auto"
+              whileHover={{ 
+                y: -8,
+                scale: 1.02,
+              }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+            >
 
                 {/* Project Type Badge */}
                 <div className="absolute top-8 right-8 z-20">
@@ -118,61 +57,23 @@ const WorkSection = ({ title, description, videoSrc, imgSrc, reverse, link, inde
                   </motion.span>
                 </div>
 
-                {/* Media Container - Fixed Aspect Ratio */}
-                <div className="relative z-10 overflow-hidden rounded-2xl aspect-[4/3] w-full">
-                  {videoSrc ? (
-                    <motion.video
-                      className="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-105"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    >
-                      <source src={videoSrc} type="video/mp4" />
-                    </motion.video>
-                  ) : (
-                    <motion.img
-                      src={imgSrc}
-                      alt={title}
-                      className="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-105"
-                    />
-                  )}
-                  
-                  {/* Media overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                  
-                  {/* Floating particles on hover */}
-                  <motion.div
-                    className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  >
-                    {[...Array(6)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="absolute w-1 h-1 bg-white/60 rounded-full"
-                        style={{
-                          left: `${20 + i * 15}%`,
-                          top: `${30 + i * 10}%`,
-                        }}
-                        animate={{
-                          y: [0, -20, 0],
-                          opacity: [0.6, 1, 0.6],
-                          scale: [1, 1.5, 1],
-                        }}
-                        transition={{
-                          duration: 2,
-                          delay: i * 0.2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    ))}
-                  </motion.div>
+                {/* Media Container - Lazy */}
+                <div className="relative z-10 rounded-2xl">
+                  <LazyMedia
+                    videoSrc={videoSrc}
+                    imgSrc={imgSrc}
+                    poster={imgSrc}
+                    alt={title}
+                    aspectClass="aspect-[4/3]"
+                    imgClassName="transition-all duration-300 group-hover:scale-105"
+                    videoClassName="transition-all duration-300 group-hover:scale-105"
+                    priority={false}
+                  />
+                  <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                 </div>
 
-                {/* Hover glow effect */}
-                <motion.div
-                  className="absolute inset-0 rounded-3xl bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                />
+                {/* Subtle inner soft vignette */}
+                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-tr from-white/[0.04] via-transparent to-transparent" />
               </motion.div>
             </motion.div>
 
@@ -386,7 +287,7 @@ const WorkPage = () => {
   ];
 
   return (
-    <div className="relative w-full bg-black overflow-hidden">
+    <div className="relative w-full bg-black overflow-hidden gpu">
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none">
         {/* Animated Grid */}

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import LazyMedia from "./LazyMedia";
 
 const caseStudies = [
   {
@@ -89,7 +90,7 @@ const HighlightedWorks = () => {
   };
 
   return (
-    <section id="works" className="relative w-full min-h-screen bg-black overflow-hidden">
+    <section id="works" className="relative w-full min-h-screen bg-black overflow-hidden gpu">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Animated Grid */}
@@ -184,40 +185,10 @@ const HighlightedWorks = () => {
                   {/* Enhanced Image Card - Fixed Size */}
                   <div className="w-full lg:w-1/2">
                     <motion.div
-                      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm w-full max-w-[600px] mx-auto"
+                      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.02] p-4 backdrop-blur-sm w-full max-w-[600px] mx-auto"
                       whileHover={{ scale: 1.02, y: -5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      {/* Animated Border Glow */}
-                      <motion.div
-                        className="absolute inset-0 rounded-2xl"
-                        style={{
-                          background: `conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent, rgba(255,255,255,0.05), transparent)`,
-                        }}
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      />
-                      
-                      {/* Inner border to mask the rotating gradient */}
-                      <div className="absolute inset-[1px] rounded-2xl bg-black/80 backdrop-blur-sm" />
-                      
-                      {/* Moving light effect */}
-                      <motion.div
-                        className="absolute inset-0 rounded-2xl"
-                        style={{
-                          background: `linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%)`,
-                        }}
-                        animate={{
-                          x: ["-100%", "100%"],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          repeatDelay: 2,
-                          ease: "easeInOut",
-                        }}
-                      />
-
                       {/* Project Type Badge */}
                       <div className="absolute top-6 right-6 z-10">
                         <span className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium border backdrop-blur-sm ${
@@ -230,26 +201,22 @@ const HighlightedWorks = () => {
                         </span>
                       </div>
 
-                      {/* Image Container - Fixed Aspect Ratio */}
-                      <div className="relative z-10 overflow-hidden rounded-xl aspect-[4/3] w-full">
-                        <motion.img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover object-center cursor-pointer transition-all duration-500 group-hover:scale-105"
-                          onClick={() =>
-                            window.open(project.liveLink || project.figmaLink, "_blank")
-                          }
-                          whileHover={{ scale: 1.05 }}
-                        />
-                        
-                        {/* Image overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      {/* Media Container - lazy image/video */}
+                      <div className="relative z-10 rounded-xl">
+                        <div onClick={() => window.open(project.liveLink || project.figmaLink, "_blank")}>
+                          <LazyMedia
+                            imgSrc={project.image}
+                            alt={project.title}
+                            aspectClass="aspect-[4/3]"
+                            imgClassName="cursor-pointer transition-all duration-500 group-hover:scale-105"
+                            priority={false}
+                          />
+                        </div>
+                        <div className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
-
-                      {/* Hover glow effect */}
-                      <motion.div
-                        className="absolute inset-0 rounded-2xl bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      />
+                      
+                      {/* Subtle inner soft vignette */}
+                      <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/[0.04] via-transparent to-transparent" />
                     </motion.div>
                   </div>
 

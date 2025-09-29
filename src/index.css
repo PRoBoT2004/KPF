@@ -145,10 +145,16 @@ body {
   outline-offset: 2px;
 }
 
-/* Smooth transitions */
-* {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+/* GPU compositing helper to reduce jitter on animations */
+.gpu {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Optional smoother opacity/transform hints */
+.smooth {
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 

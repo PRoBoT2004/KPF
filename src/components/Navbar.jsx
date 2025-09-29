@@ -44,7 +44,7 @@ const Navbar = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${
+        className={`fixed top-6 inset-x-0 z-50 transition-all duration-300 gpu flex items-center justify-center ${
           isScrolled ? "scale-95" : "scale-100"
         }`}
       >
@@ -140,7 +140,7 @@ const Navbar = () => {
             
             {/* Mobile Menu Content */}
             <motion.div
-              className="absolute top-20 left-1/2 -translate-x-1/2 w-64"
+              className="absolute top-20 inset-x-4 sm:left-1/2 sm:-translate-x-1/2 sm:inset-x-auto w-[min(100vw-2rem,24rem)] mx-auto"
               initial={{ opacity: 0, y: -20, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.9 }}
