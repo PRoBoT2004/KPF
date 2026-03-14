@@ -261,10 +261,10 @@ const WorkPage = () => {
       link: "/works/dripstride-case-study"
     },
     {
-      title: "Color Pencil",
-      description: "Explore how Color Pencil brings creativity to the forefront through engaging UI/UX design.",
-      videoSrc: "/assets/1.mp4",
-      link: "/works/colorpencil-case-study"
+      title: "MediTrack",
+      description: "A comprehensive healthcare management and tracking platform aiming to simplify caregiving operations through intuitive UI design.",
+      imgSrc: "/assets/meditrack-dashboard.png",
+      link: "/works/meditrack-case-study"
     },
     {
       title: "Launchpad",
