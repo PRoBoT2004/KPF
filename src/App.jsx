@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import WorksPage from './components/WorksPage';
 import ContactPage from './components/ContactPage';
-import ColorPencilCaseStudy from './components/ColorPencilCaseStudy'; 
+import MediTrackCaseStudy from './components/MediTrackCaseStudy';
 import LaunchpadCaseStudy from './components/LaunchpadCaseStudy';
 import EndaCaseStudy from './components/EndaCaseStudy';
 import BioconBiologicsCaseStudy from './components/BioconBiologicsCaseStudy';
@@ -24,7 +24,7 @@ const App = () => {
             <Route path="/works" element={<WorksPage />} />
             <Route path="/works/enda-case-study" element={<EndaCaseStudy />} />
             <Route path="/works/launchpad-case-study" element={<LaunchpadCaseStudy />} /> 
-            <Route path="/works/colorpencil-case-study" element={<ColorPencilCaseStudy />} />
+            <Route path="/works/meditrack-case-study" element={<MediTrackCaseStudy />} />
             <Route path="/works/bioconbiologics-case-study" element={<BioconBiologicsCaseStudy />} />
             <Route path="/works/ongo-case-study" element={<OnGoCaseStudy />} />
             <Route path="/works/dripstride-case-study" element={<DripStrideCaseStudy />} />

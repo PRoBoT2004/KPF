@@ -21,12 +21,11 @@ const caseStudies = [
     type: "development"
   },
   {
-    id: "colorpencil",
-    title: "Color Pencil",
-    description: "Revamping an educational platform with modern UI/UX principles.",
-    image: "/assets/1.png",
-    route: "/works/colorpencil-case-study",
-    figmaLink: "https://www.figma.com/design/yEkNHJQZbO5gnhIc0QcMSF/Color-Pencil-Pages?node-id=0-1&t=L4Rz2mZt9yiWrNeu-1",
+    id: "meditrack",
+    title: "MediTrack",
+    description: "Healthcare management platform designed for Indian families. Complete UX strategy and interface design.",
+    image: "/assets/meditrack-dashboard.png",
+    route: "/works/meditrack-case-study",
     type: "design"
   },
   {
