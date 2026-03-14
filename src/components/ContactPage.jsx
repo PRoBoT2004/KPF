@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ const ContactPage = () => {
     subject: '',
     message: ''
   });
+  const [status, setStatus] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -16,10 +18,34 @@ const ContactPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
+    setStatus('loading');
+    try {
+      // 1. Create an account at emailjs.com
+      // 2. Add an Email Service (e.g., Gmail)
+      // 3. Create an Email Template
+      // 4. Copy and paste your IDs and Keys here below
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,   // EmailJS Service ID
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,  // EmailJS Template ID
+        {
+          from_name: formData.name,
+          reply_to: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY    // EmailJS Public Key
+      );
+
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setStatus(''), 5000);
+    } catch (error) {
+      console.error('EmailJS submission error:', error);
+      setStatus('error');
+      setTimeout(() => setStatus(''), 5000);
+    }
   };
 
   const socialLinks = [
@@ -193,8 +219,8 @@ const ContactPage = () => {
         {/* Enhanced Soft Glows */}
         <motion.div
           className="absolute -top-40 left-1/4 h-[800px] w-[800px] rounded-3xl bg-white/[0.008] blur-[200px]"
-          animate={{ 
-            scale: [1, 1.4, 1], 
+          animate={{
+            scale: [1, 1.4, 1],
             opacity: [0.02, 0.06, 0.02],
             x: [0, 200, 0],
             rotate: [0, 90, 180, 270, 360]
@@ -203,19 +229,19 @@ const ContactPage = () => {
         />
         <motion.div
           className="absolute top-1/3 right-[-20%] h-[500px] w-[500px] rotate-45 rounded-3xl bg-white/[0.01] blur-[150px]"
-          animate={{ 
-            rotate: [45, 270, 45], 
-            x: [0, -150, 0], 
-            opacity: [0.015, 0.04, 0.015] 
+          animate={{
+            rotate: [45, 270, 45],
+            x: [0, -150, 0],
+            opacity: [0.015, 0.04, 0.015]
           }}
           transition={{ duration: 45, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
           className="absolute bottom-1/4 left-[-20%] h-[600px] w-[600px] -rotate-45 rounded-3xl bg-white/[0.012] blur-[180px]"
-          animate={{ 
-            rotate: [-45, -270, -45], 
-            y: [0, 100, 0], 
-            opacity: [0.01, 0.035, 0.01] 
+          animate={{
+            rotate: [-45, -270, -45],
+            y: [0, 100, 0],
+            opacity: [0.01, 0.035, 0.01]
           }}
           transition={{ duration: 55, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -235,13 +261,13 @@ const ContactPage = () => {
 
         <div className="relative w-full max-w-7xl mx-auto px-5 sm:px-6">
           {/* Header Section */}
-          <motion.div 
+          <motion.div
             className="text-center mb-20"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <motion.h1 
+            <motion.h1
               className="text-[clamp(2rem,6vw,4rem)] font-extrabold leading-tight text-white relative mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -256,13 +282,13 @@ const ContactPage = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
               />
             </motion.h1>
-            <motion.p 
+            <motion.p
               className="text-[clamp(1rem,2.5vw,1.2rem)] leading-relaxed text-white/80 max-w-[70ch] mx-auto"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              I'm always open to discussing new opportunities, creative projects, or just having a chat about design and development. 
+              I'm always open to discussing new opportunities, creative projects, or just having a chat about design and development.
               Feel free to reach out through any of the channels below.
             </motion.p>
           </motion.div>
@@ -293,7 +319,7 @@ const ContactPage = () => {
                     ease: "easeInOut",
                   }}
                 />
-                
+
                 {/* Moving gradient waves */}
                 <motion.div
                   className="absolute inset-0 rounded-3xl"
@@ -314,7 +340,7 @@ const ContactPage = () => {
                     ease: "linear",
                   }}
                 />
-                
+
                 {/* Floating dots around the form */}
                 <div className="absolute inset-0 pointer-events-none">
                   {[...Array(8)].map((_, i) => (
@@ -339,7 +365,7 @@ const ContactPage = () => {
                     />
                   ))}
                 </div>
-                
+
                 {/* Subtle border highlight */}
                 <motion.div
                   className="absolute inset-0 rounded-3xl border border-white/20 opacity-0"
@@ -432,9 +458,10 @@ const ContactPage = () => {
 
                     <motion.button
                       type="submit"
-                      className="group relative w-full inline-flex items-center justify-center rounded-xl border border-white/20 bg-white px-6 py-4 text-sm font-semibold text-black shadow-lg transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2 focus:ring-offset-black overflow-hidden"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      disabled={status === 'loading' || status === 'success'}
+                      className="group relative w-full inline-flex items-center justify-center rounded-xl border border-white/20 bg-white px-6 py-4 text-sm font-semibold text-black shadow-lg transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2 focus:ring-offset-black overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
+                      whileHover={status === 'loading' || status === 'success' ? {} : { scale: 1.02 }}
+                      whileTap={status === 'loading' || status === 'success' ? {} : { scale: 0.98 }}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.9 }}
@@ -442,19 +469,31 @@ const ContactPage = () => {
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-white/90 to-white"
                         initial={{ x: "-100%" }}
-                        whileHover={{ x: "0%" }}
+                        whileHover={status === 'loading' || status === 'success' ? {} : { x: "0%" }}
                         transition={{ duration: 0.3 }}
                       />
                       <span className="relative z-10 flex items-center gap-2">
-                        Send Message
-                        <motion.span
-                          animate={{ x: [0, 3, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                        >
-                          →
-                        </motion.span>
+                        {status === 'loading' ? 'Sending...' : status === 'success' ? 'Message Sent!' : 'Send Message'}
+                        {status !== 'loading' && status !== 'success' && (
+                          <motion.span
+                            animate={{ x: [0, 3, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                          >
+                            →
+                          </motion.span>
+                        )}
                       </span>
                     </motion.button>
+                    {status === 'error' && (
+                      <p className="mt-4 text-red-400 text-sm font-medium text-center">
+                        Something went wrong. Please try again later.
+                      </p>
+                    )}
+                    {status === 'success' && (
+                      <p className="mt-4 text-[13px] text-green-400 font-medium text-center">
+                        Message sent successfully!
+                      </p>
+                    )}
                   </form>
                 </div>
               </motion.div>
@@ -468,7 +507,7 @@ const ContactPage = () => {
               className="space-y-8"
             >
               <h2 className="text-[clamp(1.25rem,3vw,1.75rem)] font-bold text-white">Get in Touch</h2>
-              
+
               {/* Direct Contact Cards */}
               <div className="space-y-6">
                 {[
@@ -503,13 +542,13 @@ const ContactPage = () => {
                     <motion.div
                       className="absolute inset-0 rounded-2xl bg-white/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     />
-                    
+
                     <div className="relative z-10 flex items-center gap-4">
                       <span className="text-2xl">{item.icon}</span>
                       <div>
                         <h3 className="text-white/90 font-semibold mb-1">{item.title}</h3>
                         {item.href ? (
-                          <a 
+                          <a
                             href={item.href}
                             className="text-white hover:text-white/80 transition-colors"
                           >
@@ -545,7 +584,7 @@ const ContactPage = () => {
                       <motion.div
                         className="absolute inset-0 rounded-2xl bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       />
-                      
+
                       <div className="relative z-10">
                         <div className="w-12 h-12 mx-auto mb-3 flex items-center justify-center">
                           <motion.img
