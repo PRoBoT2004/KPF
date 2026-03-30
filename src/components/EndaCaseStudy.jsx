@@ -89,7 +89,7 @@ const EndaCaseStudy = () => {
       <div className="relative z-10 pt-24 sm:pt-32 pb-24">
         {/* Hero Section */}
         <Section className="mb-16">
-          <motion.div 
+          <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -179,11 +179,10 @@ const EndaCaseStudy = () => {
                 {images.map((_, index) => (
                   <button
                     key={index}
-                    className={`w-3 h-3 rounded-full transition-all ${
-                      currentIndex === index
-                        ? "bg-white scale-110"
-                        : "bg-white/50 hover:bg-white/70"
-                    }`}
+                    className={`w-3 h-3 rounded-full transition-all ${currentIndex === index
+                      ? "bg-white scale-110"
+                      : "bg-white/50 hover:bg-white/70"
+                      }`}
                     onClick={() => selectImage(index)}
                   ></button>
                 ))}
@@ -194,7 +193,7 @@ const EndaCaseStudy = () => {
 
         {/* External Links */}
         <Section className="mb-12">
-          <motion.div 
+          <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -203,7 +202,7 @@ const EndaCaseStudy = () => {
           >
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
-                href="https://www.endasportswear.com/"
+                href="https://enda-website.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center justify-center rounded-xl border border-white/20 bg-white px-8 py-4 text-sm font-semibold text-black shadow-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2 focus:ring-offset-black overflow-hidden"
@@ -217,7 +216,7 @@ const EndaCaseStudy = () => {
                 <span className="relative z-10">Live Website</span>
               </a>
               <a
-                href="https://www.figma.com/design/Pv13MUB4JVLSDxbbf5b5hn/Enda?node-id=0-1&t=Xxchf8ZdGzfiRrIs-1"
+                href="https://www.figma.com/design/S3yz8PnbcsXQMVAEW9QlJo/ENDA?node-id=0-1&t=AgF8CtpwB99ndyvH-1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-8 py-4 text-sm font-semibold text-white/90 backdrop-blur-sm transition-all hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
