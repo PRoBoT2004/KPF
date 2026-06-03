@@ -136,11 +136,11 @@ export function Chip({ children, accent = "gold" }) {
 }
 
 // ---- chunky pixel button (link or button) ----
-export function PixelButton({ href, external, children, accent = "gold", onClick, as = "a" }) {
+export function PixelButton({ href, external, children, accent = "gold", onClick, as = "a", type = "button", disabled = false }) {
   const a = accentOf(accent);
-  const cls = "font-pixel inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[13px] text-[#1a1420] transition-transform active:translate-y-[2px] active:shadow-none";
+  const cls = "font-pixel inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[13px] text-[#1a1420] transition-transform active:translate-y-[2px] active:shadow-none disabled:opacity-60";
   const style = { background: a.main, border: "3px solid #2a2230", boxShadow: "0 4px 0 #2a2230" };
-  if (as === "button") return <button type="button" onClick={onClick} className={cls} style={style}>{children}</button>;
+  if (as === "button") return <button type={type} onClick={onClick} disabled={disabled} className={cls} style={style}>{children}</button>;
   if (external) return <a href={href} target="_blank" rel="noopener noreferrer" className={cls} style={style}>{children}</a>;
   return <Link href={href} className={cls} style={style}>{children}</Link>;
 }
