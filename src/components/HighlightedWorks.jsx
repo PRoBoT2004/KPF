@@ -13,15 +13,6 @@ const caseStudies = [
     type: "development"
   },
   {
-    id: "dripstride",
-    title: "DripStride",
-    description: "An e-commerce sneaker store showcasing component-based frontend architecture and smooth user experience.",
-    image: "/assets/5.png",
-    route: "/works/dripstride-case-study",
-    liveLink: "https://dripstride.vercel.app/",
-    type: "development"
-  },
-  {
     id: "meditrack",
     title: "MediTrack",
     description: "Healthcare management platform designed for Indian families. Complete UX strategy and interface design.",

@@ -64,7 +64,7 @@ export function PixelShell({ accent = "gold", eyebrow, title, subtitle, children
           <span className="sm:hidden">← Map</span>
           <span className="hidden sm:inline">← Back to the map</span>
         </Link>
-        <Link href="/traditional"
+        <Link href="/resume"
           className="font-pixel rounded-md px-3 py-1.5 text-[12px] text-[#efe3c8] transition-colors hover:text-white"
           style={{ border: "2px solid #3a4a3a" }}>
           <span className="sm:hidden">Résumé →</span>
@@ -101,7 +101,7 @@ export function PixelShell({ accent = "gold", eyebrow, title, subtitle, children
             <Link href="/" className="hover:text-white">The map</Link>
             <Link href="/about" className="hover:text-white">About</Link>
             <Link href="/contact" className="hover:text-white">Contact</Link>
-            <Link href="/traditional" className="hover:text-white">Résumé view</Link>
+            <Link href="/resume" className="hover:text-white">Résumé view</Link>
           </div>
         </div>
       </footer>
@@ -177,22 +177,35 @@ export function ProductMock({ name, tagline, accent = "gold", live }) {
   );
 }
 
-// ---- image that preloads and only renders on success (else the fallback) ----
+// ---- image loader with a fallback chain ----
+// `src` may be a single path or an array of candidates (e.g. a generated mockup
+// first, then the raw screenshot). Renders the first that loads; else `fallback`.
+// Pre-checks each so there's never a broken-image flash.
 export function ProjectImage({ src, alt, fallback, imgClassName = "" }) {
-  const [ok, setOk] = useState(false);
+  const sources = (Array.isArray(src) ? src : [src]).filter(Boolean);
+  const key = sources.join("|");
+  const [resolved, setResolved] = useState(null);
   useEffect(() => {
-    setOk(false);
-    if (!src) return;
     let live = true;
-    const img = new window.Image();
-    img.onload = () => { if (live) setOk(true); };
-    img.onerror = () => { if (live) setOk(false); };
-    img.src = src;
+    setResolved(null);
+    (async () => {
+      for (const s of sources) {
+        const ok = await new Promise((res) => {
+          const img = new window.Image();
+          img.onload = () => res(true);
+          img.onerror = () => res(false);
+          img.src = s;
+        });
+        if (!live) return;
+        if (ok) { setResolved(s); return; }
+      }
+    })();
     return () => { live = false; };
-  }, [src]);
-  if (src && ok) {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+  if (resolved) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={src} alt={alt} className={imgClassName} />;
+    return <img src={resolved} alt={alt} className={imgClassName} />;
   }
   return fallback;
 }

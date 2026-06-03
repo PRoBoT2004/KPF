@@ -365,7 +365,7 @@ export default function PixelWorld() {
           style={{ background: "rgba(243,231,207,0.92)", border: "2px solid #2a2230", boxShadow: "0 2px 0 rgba(42,34,48,0.5)" }}>
           KRISHNA&apos;S WORLD
         </div>
-        <Link href="/traditional"
+        <Link href="/resume"
           className="font-pixel pointer-events-auto rounded-md px-3 py-1.5 text-[12px] text-[#1a1420]"
           style={{ background: "rgba(243,231,207,0.92)", border: "2px solid #2a2230", boxShadow: "0 2px 0 rgba(42,34,48,0.5)" }}>
           Résumé view →

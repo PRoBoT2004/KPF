@@ -292,8 +292,8 @@ export default function GameDialog({ zone, onClose }) {
           className="flex items-center justify-between px-4 py-2 text-[11px]"
           style={{ borderTop: "4px solid #2a2230", background: "#e3d4b4" }}
         >
-          <Link href="/traditional" className="text-[#6b3f22] underline">
-            Full résumé view →
+          <Link href="/resume" className="text-[#6b3f22] underline">
+            Résumé view →
           </Link>
           <span className="text-[#9a743f]">[Esc] close</span>
         </div>

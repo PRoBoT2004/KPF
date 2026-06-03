@@ -196,7 +196,7 @@ export const projects = [
   {
     id: "enda",
     name: "Enda",
-    category: "Client", accent: "rose", image: "/assets/e1.png",
+    category: "Client", accent: "rose", image: ["/assets/projects/enda.png", "/assets/e1.png"],
     subtitle: "Global footwear brand — site & design system",
     role: "Solo contributor at UMM Digital — UX research, IA, wireframes, the Figma design system, and the production React build.",
     overview:
@@ -213,7 +213,7 @@ export const projects = [
   {
     id: "launchpad",
     name: "Launchpad",
-    category: "Client", accent: "rose", image: "/assets/lp1.png",
+    category: "Client", accent: "rose", image: ["/assets/projects/launchpad.png", "/assets/lp1.png"],
     subtitle: "Modern web presence for a global school",
     role: "UI/UX design at UMM Digital.",
     overview:
@@ -227,48 +227,12 @@ export const projects = [
     figma: "https://www.figma.com/design/DsGMoqInLzYyDGChRvXSDa/Launchpad?node-id=0-1",
     caseStudy: "/works/launchpad-case-study",
   },
-  {
-    id: "colorpencil",
-    name: "Color Pencil",
-    category: "Client", accent: "rose", image: "/assets/cph.png",
-    subtitle: "Brand & interface design",
-    role: "Product / interface design at UMM Digital.",
-    overview:
-      "Interface and brand design work for Color Pencil, a UMM Digital client — a consistent, brand-led component system across the product.",
-    highlights: ["Interface design in Figma", "Brand-led component system"],
-    tech: ["Figma"],
-    caseStudy: "/works/colorpencil-case-study",
-  },
-  {
-    id: "biocon",
-    name: "Biocon Biologics",
-    category: "Client", accent: "rose", image: "/assets/bc1.png",
-    subtitle: "Educational experience in the digital space",
-    role: "Design at UMM Digital.",
-    overview:
-      "A digital educational experience for Biocon Biologics — turning dense material into a clear, navigable interface.",
-    highlights: ["Information design for complex content", "Clean, accessible interface"],
-    tech: ["Figma", "React"],
-    caseStudy: "/works/bioconbiologics-case-study",
-  },
-  {
-    id: "ongo",
-    name: "OnGo",
-    category: "Client", accent: "rose", image: "/assets/ongo.png",
-    subtitle: "Commute app — mobile UX & branding",
-    role: "Mobile UX + branding.",
-    overview:
-      "OnGo simplifies daily commutes with an intuitive mobile experience and sharp branding — clean flows and a confident identity system.",
-    highlights: ["Mobile-first UX flows", "Brand identity + UI system"],
-    tech: ["Figma"],
-    caseStudy: "/works/ongo-case-study",
-  },
 
   // ---- Lab & studies (personal builds, design exercises) ----
   {
     id: "cryptodash",
     name: "CryptoDash",
-    category: "Lab", accent: "cyan", image: "/assets/CD_1.png",
+    category: "Lab", accent: "cyan", image: ["/assets/projects/cryptodash.png", "/assets/CD_1.png"],
     subtitle: "Real-time cryptocurrency dashboard",
     role: "Front-end build.",
     overview:
@@ -279,22 +243,9 @@ export const projects = [
     caseStudy: "/works/cryptodash-case-study",
   },
   {
-    id: "dripstride",
-    name: "DripStride",
-    category: "Lab", accent: "cyan", image: "/assets/DS_1.png",
-    subtitle: "E-commerce sneaker store",
-    role: "Front-end build.",
-    overview:
-      "An e-commerce sneaker storefront focused on a clean component architecture and a smooth shopping experience.",
-    highlights: ["Component-based storefront", "Cart & product flows", "Smooth, responsive UX"],
-    tech: ["React", "Tailwind"],
-    live: "https://dripstride.vercel.app/",
-    caseStudy: "/works/dripstride-case-study",
-  },
-  {
     id: "meditrack",
     name: "MediTrack",
-    category: "Lab", accent: "cyan", image: "/assets/meditrack-dashboard.png",
+    category: "Lab", accent: "cyan", image: ["/assets/projects/meditrack.png", "/assets/meditrack-dashboard.png"],
     subtitle: "Healthcare management SaaS — design study",
     role: "Product design (not shipped — a design exercise).",
     overview:
@@ -306,7 +257,7 @@ export const projects = [
   {
     id: "fabric-tryon",
     name: "Fabric Try-On",
-    category: "Lab", accent: "cyan", image: null,
+    category: "Lab", accent: "cyan", image: ["/assets/projects/fabric-tryon.png"],
     subtitle: "AI virtual clothing try-on",
     role: "Build — live MVP.",
     overview:

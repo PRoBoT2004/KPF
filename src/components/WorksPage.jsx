@@ -256,12 +256,6 @@ const WorkPage = () => {
       link: "/works/cryptodash-case-study"
     },
     {
-      title: "DripStride",
-      description: "An e-commerce sneaker store showcasing component-based frontend architecture and smooth user experience.",
-      imgSrc: "/assets/5.png",
-      link: "/works/dripstride-case-study"
-    },
-    {
       title: "MediTrack",
       description: "A comprehensive healthcare management and tracking platform aiming to simplify caregiving operations through intuitive UI design.",
       imgSrc: "/assets/meditrack-dashboard.png",
@@ -279,18 +273,6 @@ const WorkPage = () => {
       videoSrc: "/assets/3.mp4",
       link: "/works/enda-case-study"
     },
-    {
-      title: "Biocon Biologics",
-      description: "Biocon Biologics project highlights educational innovation in the digital space.",
-      videoSrc: "/assets/4.mp4",
-      link: "/works/bioconbiologics-case-study"
-    },
-    {
-      title: "OnGo",
-      description: "OnGo simplifies commutes with intuitive mobile UX and sharp branding.",
-      imgSrc: "/assets/ongo.png",
-      link: "/works/ongo-case-study"
-    }
   ];
 
   return (
