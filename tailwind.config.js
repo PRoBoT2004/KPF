@@ -1,5 +1,8 @@
-module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+export default {
+  content: [
+    "./app/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
   theme: {
     extend: {
       // Professional Color Palette
@@ -51,7 +54,32 @@ module.exports = {
           700: '#404040',
           800: '#262626',
           900: '#171717',
-        }
+        },
+
+        /* ---- Game design system (collision-free names, mapped to CSS vars) ---- */
+        base: 'var(--bg-base)',          // page background
+        panel: 'var(--bg-elevated)',     // cards / panels
+        soft: 'var(--bg-soft)',          // hover surfaces
+        hair: 'var(--border-subtle)',    // hairline borders
+        hairlit: 'var(--border-strong)', // active selection border
+        ink: {
+          DEFAULT: 'var(--text-primary)',
+          soft: 'var(--text-secondary)',
+          faint: 'var(--text-tertiary)',
+        },
+        gold: 'var(--accent-gold)',      // XP / achievements / primary highlight
+        aqua: 'var(--accent-cyan)',      // dev / engineer stat
+        coral: 'var(--accent-rose)',     // design stat / designer class
+        ok: 'var(--success)',
+        bad: 'var(--danger)',
+      },
+
+      // Signature font stack
+      fontFamily: {
+        serif: ['var(--font-serif)', 'Georgia', 'serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        pixel: ['var(--font-pixel)', 'ui-monospace', 'monospace'],
       },
       
       // Consistent Spacing System
@@ -77,6 +105,11 @@ module.exports = {
         '7xl': ['4.5rem', { lineHeight: '1' }],
         '8xl': ['6rem', { lineHeight: '1' }],
         '9xl': ['8rem', { lineHeight: '1' }],
+        // Fluid display sizes (clamp) for hero / section headers
+        'display': ['clamp(2.5rem, 6vw, 5rem)', { lineHeight: '1.02', letterSpacing: '-0.02em' }],
+        'h1': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1.08', letterSpacing: '-0.015em' }],
+        'h2': ['clamp(1.5rem, 2.5vw, 2.25rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
+        'eyebrow': ['clamp(0.65rem, 1vw, 0.75rem)', { lineHeight: '1', letterSpacing: '0.22em' }],
       },
       
       // Professional Font Weights
@@ -123,6 +156,12 @@ module.exports = {
         '700': '700ms',
       },
       
+      // Premium easing curves (no linear / ease-in-out for UI motion)
+      transitionTimingFunction: {
+        'spring': 'cubic-bezier(0.32, 0.72, 0, 1)',
+        'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
+      },
+
       // Animation System
       animation: {
         "scroll-up": "scrollUp 10s linear infinite",
@@ -130,6 +169,12 @@ module.exports = {
         "slide-up": "slideUp 0.8s ease-out",
         "scale-in": "scaleIn 0.5s ease-out",
         "float": "float 6s ease-in-out infinite",
+        // Game layer
+        "marquee": "marquee var(--marquee-duration, 40s) linear infinite",
+        "marquee-reverse": "marquee var(--marquee-duration, 40s) linear infinite reverse",
+        "shimmer": "shimmer 8s ease-in-out infinite",
+        "gradient-x": "gradientX 6s ease infinite",
+        "border-beam": "borderBeam var(--beam-duration, 6s) linear infinite",
       },
       keyframes: {
         scrollUp: {
@@ -151,6 +196,21 @@ module.exports = {
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" },
+        },
+        marquee: {
+          "from": { transform: "translateX(0)" },
+          "to": { transform: "translateX(calc(-100% - var(--marquee-gap, 2rem)))" },
+        },
+        shimmer: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        gradientX: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        borderBeam: {
+          "100%": { "offset-distance": "100%" },
         },
       },
       

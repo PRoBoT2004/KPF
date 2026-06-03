@@ -1,12 +1,13 @@
+"use client";
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
 
   // Navigation links
   const navLinks = [
@@ -28,12 +29,12 @@ const Navbar = () => {
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   // Check if link is active
   const isActiveLink = (path) => {
-    if (path === "/" && location.pathname === "/") return true;
-    if (path !== "/" && location.pathname.startsWith(path)) return true;
+    if (path === "/" && pathname === "/") return true;
+    if (path !== "/" && pathname.startsWith(path)) return true;
     return false;
   };
 
@@ -62,7 +63,7 @@ const Navbar = () => {
               className="w-8 h-8 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center cursor-pointer"
               whileHover={{ scale: 1.1, backgroundColor: "rgba(255,255,255,0.15)" }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => navigate("/")}
+              onClick={() => router.push("/")}
             >
               <span className="text-white font-bold text-sm">K</span>
             </motion.div>
@@ -75,7 +76,7 @@ const Navbar = () => {
                   href={link.path}
                   onClick={(e) => {
                     e.preventDefault();
-                    navigate(link.path);
+                    router.push(link.path);
                   }}
                   className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     isActiveLink(link.path)

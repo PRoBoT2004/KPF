@@ -1,9 +1,10 @@
+"use client";
 import React, { useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const MediTrackCaseStudy = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { scrollYProgress } = useScroll();
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
@@ -57,7 +58,7 @@ const MediTrackCaseStudy = () => {
         {/* Navigation back */}
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <button
-            onClick={() => navigate('/works')}
+            onClick={() => router.push('/works')}
             className="group flex items-center gap-3 text-white/50 hover:text-white transition-colors duration-300 text-sm tracking-widest uppercase font-medium"
           >
             <span className="transform transition-transform group-hover:-translate-x-1">←</span> Back to Works

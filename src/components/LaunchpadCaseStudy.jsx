@@ -1,5 +1,6 @@
+"use client";
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const LaunchpadCaseStudy = () => {
@@ -231,7 +232,7 @@ const LaunchpadCaseStudy = () => {
         {/* Back Button */}
         <Section>
           <div className="text-center">
-            <Link to="/works/">
+            <Link href="/works">
               <button className="group relative inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white/90 backdrop-blur-sm transition-all hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black">
                 ← Back to UI/UX Projects
               </button>

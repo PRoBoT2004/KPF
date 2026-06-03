@@ -1,9 +1,10 @@
+"use client";
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 const WorkSection = ({ title, description, videoSrc, imgSrc, reverse, link, index }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <motion.section
@@ -123,7 +124,7 @@ const WorkSection = ({ title, description, videoSrc, imgSrc, reverse, link, inde
               </motion.p>
               
               <motion.button
-                onClick={() => navigate(link)}
+                onClick={() => router.push(link)}
                 className="group relative inline-flex items-center justify-center rounded-xl border border-white/20 bg-white px-8 py-4 text-sm font-semibold text-black shadow-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2 focus:ring-offset-black overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+"use client";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 const caseStudies = [
@@ -40,7 +41,7 @@ const caseStudies = [
 ];
 
 const HighlightedWorks = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   // Subtle animated grid base (randomized phase per mount)
   const baseX = Math.floor(Math.random() * 50);
@@ -252,7 +253,7 @@ const HighlightedWorks = () => {
                     
                     {/* Enhanced CTA Button */}
                     <motion.button
-                      onClick={() => navigate(project.route)}
+                      onClick={() => router.push(project.route)}
                       className="group relative inline-flex items-center justify-center rounded-xl border border-white/20 bg-white px-8 py-4 text-sm font-semibold text-black shadow-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2 focus:ring-offset-black overflow-hidden"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}

@@ -1,0 +1,50 @@
+{
+  "palette": {
+    "K": "#22202b",
+    "H": "#7a5230",
+    "N": "#553718",
+    "F": "#9a6c3e",
+    "S": "#f6cda0",
+    "C": "#dca175",
+    "E": "#22202b",
+    "M": "#b15f3c",
+    "R": "#e89a86",
+    "J": "#4f72a8",
+    "Z": "#3a5585",
+    "L": "#6f93c6",
+    "W": "#f1ece1",
+    "P": "#324d7d",
+    "D": "#3c4868",
+    "X": "#2a3248",
+    "B": "#eef0f4",
+    "Y": "#bcbdc9"
+  },
+  "hero": {
+    "down": [
+      "................",
+      ".....FFFF.......",
+      "...FNHHHHNF.....",
+      "..FHHHHHHHHF....",
+      "..NHHHHHHHHN....",
+      "..HHFSSSSFHH....",
+      "..HSSSSSSSSH....",
+      "..HSSSSSSSSH....",
+      "..HSECSSCESH....",
+      "..FSSSSSSSSF....",
+      "...SCRSSRCS.....",
+      "...SSCMMCSS.....",
+      "....KSSSSK......",
+      "...ZJJWWJJZ.....",
+      "..ZJJLJJLJJZ....",
+      ".CKJLJJJJLJKC...",
+      ".SKJLPPPPLJKS...",
+      ".SKJZPPPPZJKS...",
+      "..KJZZZZZZJK....",
+      "...KDDDDDDK.....",
+      "...KDXKKXDK.....",
+      "...KDXK.KXDK....",
+      "..KBBYK.KYBBK...",
+      "..KBBBK.KBBBK..."
+    ]
+  }
+}

@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN TOKENS — single source of truth (dark · gold · cyan)
+   ============================================================ */
+:root {
+  /* Surfaces */
+  --bg-base: #0B0B0E;        /* near-black, slight warm tint */
+  --bg-elevated: #14141A;    /* cards, panels */
+  --bg-soft: #1C1C24;        /* hover states */
+
+  /* Hairlines */
+  --border-subtle: #2A2A36;
+  --border-strong: #3D3D52;
+
+  /* Text */
+  --text-primary: #F0EBE0;   /* warm off-white */
+  --text-secondary: #9A9388; /* muted body */
+  --text-tertiary: #5C5749;  /* captions, timestamps */
+
+  /* Accents */
+  --accent-gold: #D4A848;    /* XP, achievements, primary highlight */
+  --accent-cyan: #4FD1C5;    /* code / dev stat */
+  --accent-rose: #E07B6B;    /* design stat / design class */
+
+  /* States */
+  --success: #6FCF7A;
+  --danger: #D86161;
+
+  /* Fluid spacing & type */
+  --space-hero-y: clamp(4rem, 10vw, 8rem);
+  --space-section-y: clamp(3rem, 6vw, 6rem);
+
+  /* Motion */
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Basic styles to ensure content is visible */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure content is visible */
+* {
+  box-sizing: border-box;
+}
+
+/* Custom pixelated effects */
+.pixel-border {
+  border-image: linear-gradient(45deg, #10b981, #059669) 1;
+}
+
+/* Custom gradients for themes */
+.bg-gradient-pixel {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.bg-gradient-cyber {
+  background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+}
+
+.bg-gradient-retro {
+  background: linear-gradient(135deg, #ec4899 0%, #ef4444 100%);
+}
+
+.bg-gradient-neon {
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+}
+
+/* Pixel grid background */
+.pixel-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Custom animations */
+@keyframes pixelFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pixelGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-pixel-float {
+  animation: pixelFloat 3s ease-in-out infinite;
+}
+
+.animate-pixel-glow {
+  animation: pixelGlow 2s ease-in-out infinite;
+}
+
+/* Responsive font sizes */
+.text-responsive-xl {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+}
+
+.text-responsive-2xl {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.text-responsive-3xl {
+  font-size: clamp(1.875rem, 4vw, 3rem);
+}
+
+.text-responsive-4xl {
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+}
+
+.text-responsive-5xl {
+  font-size: clamp(3rem, 6vw, 6rem);
+}
+
+.text-responsive-6xl {
+  font-size: clamp(3.75rem, 7vw, 7.5rem);
+}
+
+.text-responsive-7xl {
+  font-size: clamp(4.5rem, 8vw, 9rem);
+}
+
+/* Glass morphism effects */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.glass-effect-strong {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--accent-gold);
+  color: #0B0B0E;
+}
+
+::-moz-selection {
+  background-color: var(--accent-gold);
+  color: #0B0B0E;
+}
+
+/* Focus styles — visible, styled, never removed (a11y) */
+:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* GPU compositing helper to reduce jitter on animations */
+.gpu {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Optional smoother opacity/transform hints */
+.smooth {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* ============================================================
+   GAME-LAYER UTILITIES
+   ============================================================ */
+
+/* Subtle film-grain / noise — apply to fixed pointer-events-none layer only */
+.noise-layer {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+}
+
+/* Cork-board texture for the contact bulletin (CSS only, no image) */
+.corkboard {
+  background-color: #2a2018;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(212, 168, 72, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(224, 123, 107, 0.05) 0%, transparent 40%),
+    radial-gradient(rgba(255, 245, 220, 0.04) 1px, transparent 1px);
+  background-size: auto, auto, 6px 6px;
+}
+
+/* ============================================================
+   ACCESSIBILITY — honor reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
