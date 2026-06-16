@@ -93,11 +93,16 @@ export default function PixelWorld() {
     s.hero = buildHeroFrames();
     s.heroW = 16; s.heroH = 24;
 
-    // ---- sizing ----
+    // ---- sizing + zoom (scroll wheel / pinch) ----
+    const ZMIN = 0.6, ZMAX = 2.6;
+    if (!s.zoom) s.zoom = 1;
+    s.pointers = new Map();
+    const applyScale = () => { s.scale = s.baseScale * s.zoom; };
     const resize = () => {
       const vw = window.innerWidth, vh = window.innerHeight;
       s.view = { w: vw, h: vh };
-      s.scale = Math.max(2, Math.floor(vh / (15 * TILE)));
+      s.baseScale = Math.max(2, Math.floor(vh / (15 * TILE)));
+      applyScale();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const cv = canvasRef.current; if (!cv) return;
       cv.width = Math.floor(vw * dpr); cv.height = Math.floor(vh * dpr);
@@ -123,10 +128,19 @@ export default function PixelWorld() {
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("keyup", onKeyUp);
 
-    // ---- click / tap to move ----
-    const onPointer = (e) => {
+    // ---- tap / click to move  +  pinch / wheel to zoom ----
+    const cv = canvasRef.current;
+    const pinchDist = () => {
+      const p = [...s.pointers.values()];
+      return p.length < 2 ? 0 : Math.hypot(p[0].x - p[1].x, p[0].y - p[1].y);
+    };
+    const setZoom = (z) => { s.zoom = clamp(z, ZMIN, ZMAX); applyScale(); };
+
+    const onPointerDown = (e) => {
+      s.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (s.pointers.size >= 2) { s.pinch = pinchDist(); s.moveTarget = null; s.pendingZone = null; return; }
       if (s.paused) return;
-      const cv = canvasRef.current, rect = cv.getBoundingClientRect();
+      const rect = cv.getBoundingClientRect();
       const worldX = s.cam.x + (e.clientX - rect.left) / s.scale;
       const worldY = s.cam.y + (e.clientY - rect.top) / s.scale;
       const tx = Math.floor(worldX / TILE), ty = Math.floor(worldY / TILE);
@@ -143,8 +157,29 @@ export default function PixelWorld() {
         s.pendingZone = null;
       }
     };
-    const cv = canvasRef.current;
-    cv.addEventListener("pointerdown", onPointer);
+    const onPointerMove = (e) => {
+      if (!s.pointers.has(e.pointerId)) return;
+      s.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (s.pointers.size >= 2) {
+        const d = pinchDist();
+        if (s.pinch) setZoom(s.zoom * (d / s.pinch));
+        s.pinch = d;
+      }
+    };
+    const onPointerUp = (e) => {
+      s.pointers.delete(e.pointerId);
+      if (s.pointers.size < 2) s.pinch = 0;
+    };
+    const onWheel = (e) => {
+      e.preventDefault();
+      setShowHint(false);
+      setZoom(s.zoom * (e.deltaY < 0 ? 1.12 : 0.892));
+    };
+    cv.addEventListener("pointerdown", onPointerDown);
+    cv.addEventListener("pointermove", onPointerMove);
+    cv.addEventListener("pointerup", onPointerUp);
+    cv.addEventListener("pointercancel", onPointerUp);
+    cv.addEventListener("wheel", onWheel, { passive: false });
 
     function tryInteract() {
       if (s.paused) return;
@@ -347,7 +382,11 @@ export default function PixelWorld() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("keyup", onKeyUp);
-      cv?.removeEventListener("pointerdown", onPointer);
+      cv?.removeEventListener("pointerdown", onPointerDown);
+      cv?.removeEventListener("pointermove", onPointerMove);
+      cv?.removeEventListener("pointerup", onPointerUp);
+      cv?.removeEventListener("pointercancel", onPointerUp);
+      cv?.removeEventListener("wheel", onWheel);
     };
   }, []);
 
@@ -384,7 +423,7 @@ export default function PixelWorld() {
         <div className="font-pixel pointer-events-none absolute inset-x-0 bottom-6 z-30 flex justify-center">
           <div className="rounded-md px-4 py-2 text-[12px] text-[#1a1420]"
             style={{ background: "rgba(243,231,207,0.92)", border: "2px solid #2a2230" }}>
-            WASD / Arrows to move · Click to walk · Walk to a shop &amp; press E
+            WASD / Arrows to move · Click to walk · Scroll to zoom · Press E at a shop
           </div>
         </div>
       )}
