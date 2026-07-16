@@ -227,6 +227,30 @@ export const projects = [
     figma: "https://www.figma.com/design/DsGMoqInLzYyDGChRvXSDa/Launchpad?node-id=0-1",
     caseStudy: "/works/launchpad-case-study",
   },
+  {
+    id: "patel-enterprise",
+    name: "Patel Enterprise",
+    category: "Client", accent: "rose", image: ["/assets/projects/patel-enterprise.png"],
+    subtitle: "Industrial roofing & shed solutions — business site",
+    role: "Design + front-end build.",
+    overview:
+      "The business website for Patel Enterprise — durable, safe industrial roofing and shed systems for factories, warehouses and commercial structures, powered by Tata BlueScope, Kee Safety, Tegola and Saint-Gobain.",
+    highlights: ["Brand / business website", "Clear services, products & quote flow", "Responsive, mobile-first build"],
+    tech: ["React", "Tailwind"],
+    live: "https://patelenterprise.co/",
+  },
+  {
+    id: "primedigitals",
+    name: "PrimeDigitals",
+    category: "Client", accent: "rose", image: ["/assets/projects/primedigitals.png"],
+    subtitle: "My product studio — “software shops actually run on”",
+    role: "Founder — brand, design + build, end-to-end.",
+    overview:
+      "PrimeDigitals is my own product studio — live SaaS in real shops (point-of-sale, prepaid, dine-in and B2B), and the brand behind Shop-ERP, Touchpe and Vitran. I designed and built the studio's site end-to-end.",
+    highlights: ["My own product studio", "Home of Shop-ERP, Touchpe & Vitran", "Brand, web & engineering — end to end"],
+    tech: ["React", "Tailwind", "Framer Motion"],
+    live: "https://primedigitals.co.in/",
+  },
 
   // ---- Lab & studies (personal builds, design exercises) ----
   {
@@ -274,7 +298,7 @@ export const flagshipProjects = projects.filter((p) => p.flagship);
 // Gallery groupings for the Hall of Quests
 export const projectCategories = [
   { key: "Product", label: "Products", blurb: "Live SaaS I design, build and ship solo.", accent: "gold" },
-  { key: "Client", label: "Client Work", blurb: "Design & front-end for UMM Digital clients.", accent: "rose" },
+  { key: "Client", label: "Client Work", blurb: "Design & front-end for brands and businesses.", accent: "rose" },
   { key: "Lab", label: "Lab & Studies", blurb: "Personal builds and design exercises.", accent: "cyan" },
 ];
 

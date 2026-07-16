@@ -10,8 +10,10 @@ Filenames (exact, lowercase):
     touchpe.png
     vitran.png
   CLIENT WORK
-    enda.png          (footwear brand site  -> laptop / browser)
-    launchpad.png     (school web presence  -> laptop / browser)
+    enda.png             (footwear brand site  -> laptop / browser)
+    launchpad.png        (school web presence  -> laptop / browser)
+    patel-enterprise.png (roofing/shed site    -> live screenshot, already added)
+    primedigitals.png    (product studio       -> live screenshot, already added)
   LAB & STUDIES
     cryptodash.png    (crypto dashboard     -> laptop / browser)
     meditrack.png     (healthcare SaaS      -> tablet or laptop)
