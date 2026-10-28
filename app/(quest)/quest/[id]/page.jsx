@@ -11,7 +11,8 @@ export function generateMetadata({ params }) {
   if (!p) return { title: "Quest" };
   return {
     title: `${p.name} — ${p.subtitle}`,
-    description: p.outcome,
+    description: p.outcome || p.overview || p.subtitle,
+    alternates: { canonical: `/work/${p.id}` },
     openGraph: { title: `${p.name} — Quest`, description: p.subtitle, type: "article" },
   };
 }

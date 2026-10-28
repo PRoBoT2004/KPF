@@ -45,8 +45,37 @@ export default function QuestPage({ id }) {
             {p.live && <PixelButton href={p.live} external accent={accent}>Visit live ↗</PixelButton>}
             {p.figma && <PixelButton href={p.figma} external accent={accent}>Figma ↗</PixelButton>}
             {p.flagship && <PixelButton href={identity.githubUrl} external accent="wood">GitHub ↗</PixelButton>}
+            <PixelButton href={`/work/${p.id}`} accent="wood">Full case study →</PixelButton>
           </div>
         </Panel>
+
+        {/* design + engineering — both sides of the same quest */}
+        {(p.design?.length > 0 || p.engineering?.length > 0) && (
+          <div className={`grid gap-6 ${p.design?.length && p.engineering?.length ? "md:grid-cols-2" : ""}`}>
+            {p.design?.length > 0 && (
+              <Panel title="DESIGN SIDE" accent="rose" delay={0.04}>
+                <ul className="space-y-2">
+                  {p.design.map((d) => (
+                    <li key={d} className="flex gap-2 text-[13.5px] leading-snug">
+                      <span className="font-pixel shrink-0" style={{ color: accentOf("rose").deep }}>▸</span><span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Panel>
+            )}
+            {p.engineering?.length > 0 && (
+              <Panel title="ENGINEERING SIDE" accent="cyan" delay={0.06}>
+                <ul className="space-y-2">
+                  {p.engineering.map((d) => (
+                    <li key={d} className="flex gap-2 text-[13.5px] leading-snug">
+                      <span className="font-pixel shrink-0" style={{ color: accentOf("cyan").deep }}>▸</span><span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Panel>
+            )}
+          </div>
+        )}
 
         {/* ---- flagship: full case study ---- */}
         {p.flagship ? (
@@ -63,12 +92,29 @@ export default function QuestPage({ id }) {
             </Panel>
             <Panel title="STACK" accent={accent} delay={0.04}><div className="flex flex-wrap gap-2">{p.tech.map((t) => <Chip key={t} accent={accent}>{t}</Chip>)}</div></Panel>
             <Panel title="OUTCOME" accent={accent} delay={0.04}><p className="text-[14px] leading-relaxed">{p.outcome}</p></Panel>
-            <Panel title="REFLECTION" accent={accent} delay={0.04}><p className="text-[14px] italic leading-relaxed text-[#5b4a33]">{p.reflection}</p></Panel>
+            {(p.reflection || p.decision) && (
+              <Panel title={p.reflection ? "REFLECTION" : "KEY DECISION"} accent={accent} delay={0.04}>
+                <p className="text-[14px] italic leading-relaxed text-[#5b4a33]">{p.reflection || p.decision}</p>
+              </Panel>
+            )}
           </>
         ) : (
           /* ---- client / lab: focused brief ---- */
           <>
+            {p.challenge && <Panel title="THE CHALLENGE" accent={accent} delay={0.04}><p className="text-[14px] leading-relaxed">{p.challenge}</p></Panel>}
             {p.overview && <Panel title="OVERVIEW" accent={accent} delay={0.04}><p className="text-[14px] leading-relaxed">{p.overview}</p></Panel>}
+            {Array.isArray(p.problem) && (
+              <Panel title="BEFORE → AFTER" accent={accent} delay={0.04}>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {[["Before", p.problem], ["After", p.solution || []]].map(([t, list]) => (
+                    <div key={t}>
+                      <p className="font-pixel mb-1 text-[11px] uppercase tracking-wider text-[#9a743f]">{t}</p>
+                      <ul className="space-y-1.5">{list.map((x) => <li key={x} className="text-[13.5px] leading-snug">{x}</li>)}</ul>
+                    </div>
+                  ))}
+                </div>
+              </Panel>
+            )}
             {p.highlights?.length > 0 && (
               <Panel title="HIGHLIGHTS" accent={accent} delay={0.04}>
                 <ul className="space-y-2">
@@ -84,6 +130,20 @@ export default function QuestPage({ id }) {
               <Panel title="STACK" accent={accent} delay={0.04}><div className="flex flex-wrap gap-2">{p.tech.map((t) => <Chip key={t} accent={accent}>{t}</Chip>)}</div></Panel>
             )}
           </>
+        )}
+
+        {/* screenshot strip */}
+        {p.gallery?.length > 0 && (
+          <Panel title="FROM THE QUEST LOG" accent={accent} delay={0.04}>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {p.gallery.slice(0, 6).map((g) => (
+                <a key={g.src} href={`/work/${p.id}`} className="block overflow-hidden" style={{ border: "2px solid #2a2230", aspectRatio: "16 / 10", background: "#14110f" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={g.src} alt={g.alt} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-500 hover:scale-105" />
+                </a>
+              ))}
+            </div>
+          </Panel>
         )}
 
         <div className="flex flex-wrap items-center justify-between gap-3 pt-2">

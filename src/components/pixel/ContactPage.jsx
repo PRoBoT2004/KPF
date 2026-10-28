@@ -12,7 +12,7 @@ const PK = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 const CONFIGURED = !!(SID && TID && PK);
 
 function mailtoFor({ name, email, subject, message }) {
-  const body = `From: ${name} <${email}>%0D%0A%0D%0A${encodeURIComponent(message)}`;
+  const body = encodeURIComponent(`From: ${name} <${email}>\r\n\r\n${message}`);
   return `mailto:${identity.email}?subject=${encodeURIComponent(subject || "Hello from your portfolio")}&body=${body}`;
 }
 
@@ -142,7 +142,7 @@ export default function ContactPage() {
           </Panel>
           <div className="flex flex-wrap gap-3">
             <PixelButton href="/about" accent="gold">Character sheet →</PixelButton>
-            <PixelButton href="/" accent="wood">← Map</PixelButton>
+            <PixelButton href="/world" accent="wood">← Map</PixelButton>
           </div>
         </div>
       </div>

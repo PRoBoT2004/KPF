@@ -44,7 +44,7 @@ const fadeUp = {
 };
 
 // ---- Page shell: cozy "interior" backdrop + top nav + header + footer ----
-export function PixelShell({ accent = "gold", eyebrow, title, subtitle, children, backHref = "/" }) {
+export function PixelShell({ accent = "gold", eyebrow, title, subtitle, children, backHref = "/world" }) {
   const a = accentOf(accent);
   return (
     <div className="relative min-h-[100dvh] w-full overflow-x-hidden font-sans text-[#efe3c8]"
@@ -54,6 +54,13 @@ export function PixelShell({ accent = "gold", eyebrow, title, subtitle, children
         style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px)", backgroundSize: "24px 24px" }} />
       <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-0 h-[40vh]"
         style={{ background: `radial-gradient(60% 100% at 50% 0%, ${a.main}22 0%, transparent 70%)` }} />
+      {/* the town itself, dimmed to dusk, fading into the page */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[min(560px,72vh)]"
+        style={{
+          backgroundImage: "linear-gradient(180deg, rgba(20,26,22,0.35), rgba(20,26,22,0.55) 55%, #161d18), url(/studio/art/world.webp)",
+          backgroundSize: "cover", backgroundPosition: "50% 38%", imageRendering: "pixelated", opacity: 0.55,
+          WebkitMaskImage: "linear-gradient(180deg, #000 45%, transparent)", maskImage: "linear-gradient(180deg, #000 45%, transparent)",
+        }} />
 
       {/* top nav */}
       <header className="sticky top-0 z-30 flex items-center justify-between px-4 py-3 sm:px-6"
@@ -98,7 +105,8 @@ export function PixelShell({ accent = "gold", eyebrow, title, subtitle, children
         <div className="flex flex-col items-center gap-3 border-t-2 border-[#2a2230] pt-8 text-center">
           <p className="font-pixel text-[12px]" style={{ color: "#8f8a72" }}>KRISHNA MEHTA · BUILDER · DESIGNER · ENGINEER</p>
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[13px] text-[#bdb39c]">
-            <Link href="/" className="hover:text-white">The map</Link>
+            <Link href="/world" className="hover:text-white">The map</Link>
+            <Link href="/" className="hover:text-white">Studio site</Link>
             <Link href="/about" className="hover:text-white">About</Link>
             <Link href="/contact" className="hover:text-white">Contact</Link>
             <Link href="/resume" className="hover:text-white">Résumé view</Link>

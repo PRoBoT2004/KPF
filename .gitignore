@@ -29,3 +29,6 @@ next-env.d.ts
 *.sw?
 .env
 _assets_src/
+
+# Old résumé (had roles no longer shown) — keep local only
+_deprecated/Krishna-Mehta-Resume-old.pdf

@@ -58,7 +58,7 @@ export default function ResumePage() {
       {/* toolbar */}
       <div className="no-print sticky top-0 z-30 flex items-center justify-between gap-2 px-4 py-3 sm:px-6"
         style={{ background: "rgba(21,15,10,0.78)", backdropFilter: "blur(8px)", borderBottom: "2px solid #2a2230" }}>
-        <Link href="/" className="font-pixel rounded-md px-3 py-1.5 text-[12px] text-[#1a1420]"
+        <Link href="/world" className="font-pixel rounded-md px-3 py-1.5 text-[12px] text-[#1a1420]"
           style={{ background: "#f3e7cf", border: "2px solid #2a2230", boxShadow: "0 2px 0 rgba(0,0,0,0.4)" }}>
           <span className="sm:hidden">← Map</span><span className="hidden sm:inline">← Back to the map</span>
         </Link>

@@ -42,14 +42,16 @@ export const metadata = {
     template: "%s — Krishna Mehta",
   },
   description:
-    "I take products from problem to deployed and supported. Three live SaaS, 300+ paying customers, all built solo. Design plus engineering, no handoffs.",
+    "Designer and engineer — one person, no handoff. Products from the first user interview to production: Shop-ERP (300+ paying merchants), Touchpe, Vitran, Trade CRM, plus client sites like Hazeberg and Enda.",
   icons: { icon: "/assets/logo.png" },
   openGraph: {
-    title: "Krishna Mehta — Builder · Designer · Engineer",
+    title: "Krishna Mehta — Designer & Engineer",
     description:
-      "Three live SaaS. 300+ paying customers. All built solo. Choose your class to begin.",
+      "A clean studio site and an explorable 3D island, one portfolio. 300+ merchants run on software I designed and built.",
     type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Krishna Mehta — Designer & Engineer" }],
   },
+  twitter: { card: "summary_large_image", images: ["/og.png"] },
 };
 
 export const viewport = {

@@ -92,7 +92,7 @@ export default function AboutPage() {
           </div>
           <div className="mt-4 flex flex-wrap gap-3 border-t-2 border-[#cdbfa0] pt-4">
             <PixelButton href="/contact" accent="rose">Get in touch →</PixelButton>
-            <PixelButton href="/" accent="wood">← Back to the map</PixelButton>
+            <PixelButton href="/world" accent="wood">← Back to the map</PixelButton>
           </div>
         </Panel>
       </div>

@@ -102,14 +102,16 @@ function SectionBanner({ cat }) {
   );
 }
 
+const scrollTrack = (el, dir) => el?.scrollBy({ left: dir * Math.min(el.clientWidth * 0.82, 440), behavior: "smooth" });
+
 export default function QuestHall() {
   const trackRef = useRef(null);
   const drag = useRef({ down: false, x: 0, left: 0, moved: false });
 
-  const step = () => { const el = trackRef.current; return el ? Math.min(el.clientWidth * 0.82, 440) : 380; };
-  const scroll = (dir) => trackRef.current?.scrollBy({ left: dir * step(), behavior: "smooth" });
+  const scroll = (dir) => scrollTrack(trackRef.current, dir);
 
   useEffect(() => {
+    const scroll = (dir) => scrollTrack(trackRef.current, dir);
     const onKey = (e) => {
       if (e.key === "ArrowRight") { e.preventDefault(); scroll(1); }
       else if (e.key === "ArrowLeft") { e.preventDefault(); scroll(-1); }
@@ -125,6 +127,7 @@ export default function QuestHall() {
 
   return (
     <div className="relative h-[100dvh] w-full select-none overflow-hidden font-sans text-[#efe3c8]">
+      <h1 className="sr-only">Hall of Quests — every project by Krishna Mehta</h1>
       {/* ===================== museum atmosphere (fixed) ===================== */}
       <div aria-hidden className="absolute inset-0 z-0">
         {/* wall */}
@@ -181,7 +184,7 @@ export default function QuestHall() {
 
       {/* ===================== chrome ===================== */}
       <header className="absolute inset-x-0 top-0 z-30 flex items-center justify-between px-4 py-3 sm:px-6">
-        <Link href="/" className="font-pixel rounded-md px-3 py-1.5 text-[12px] text-[#1a1420]" style={{ background: "#f3e7cf", border: "2px solid #2a2230", boxShadow: "0 2px 0 rgba(0,0,0,0.4)" }}>
+        <Link href="/world" className="font-pixel rounded-md px-3 py-1.5 text-[12px] text-[#1a1420]" style={{ background: "#f3e7cf", border: "2px solid #2a2230", boxShadow: "0 2px 0 rgba(0,0,0,0.4)" }}>
           <span className="sm:hidden">← Map</span><span className="hidden sm:inline">← Back to the map</span>
         </Link>
         <div className="font-pixel rounded-md px-3 py-1.5 text-[12px] text-[#1a1420]" style={{ background: "rgba(243,231,207,0.94)", border: "2px solid #2a2230" }}>

@@ -80,6 +80,7 @@ export default {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
         pixel: ['var(--font-pixel)', 'ui-monospace', 'monospace'],
+        manrope: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
       },
       
       // Consistent Spacing System
