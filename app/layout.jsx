@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import {
   Instrument_Serif,
   Plus_Jakarta_Sans,
@@ -68,6 +69,7 @@ export default function RootLayout({ children }) {
     >
       <body className="bg-base font-sans text-ink antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );
