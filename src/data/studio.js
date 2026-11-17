@@ -2,95 +2,82 @@
 // Copy for the Studio world ("/"). Every claim here traces back
 // to portfolio.js / resume.js / the project repos — no invented
 // numbers. Project facts stay in portfolio.js; this file holds
-// the section copy and the order things appear in.
+// the home page copy and the order things appear in.
+// (The earlier long home page and its copy live in _deprecated/studio-v1.)
 // ============================================================
 
-export const featuredOrder = ["shop-erp", "hazeberg", "trade-crm", "enda", "touchpe"];
-
-export const hero = {
-  first: "Krishna",
-  last: "Mehta",
-  statement:
-    "Designer and engineer — one person, no handoff. I take products from the first user interview to production, and keep them running.",
-};
-
-export const marqueeWords = [
-  "Product design", "React & Next.js", "Design systems", "UX research",
-  "Multi-tenant SaaS", "Figma", "Motion & WebGL", "PostgreSQL", "Firebase",
-];
-
-export const manifesto =
-  "Most products lose something between the design file and the deploy. I work on both sides of that gap — research, interface, code, data, launch — so nothing gets lost in translation. Today, more than 300 shops run their month-end billing on software I designed and built.";
-
-export const stats = [
-  { value: 300, suffix: "+", label: "paying merchants", note: "on Shop-ERP" },
-  { value: 10, suffix: "+", label: "months in production", note: "zero critical downtime" },
-  { value: 3, prefix: "<", suffix: "s", label: "tap-to-charge", note: "Touchpe cashier flow" },
-  { value: 4, label: "B2B products", note: "designed + built end to end" },
-];
-
-export const capabilities = {
-  design: [
-    "UX research & user interviews",
-    "Information architecture & flows",
-    "Wireframes & prototyping",
-    "Figma design systems",
-    "Visual & interaction design",
-    "Usability testing & handoff docs",
+// ---- Home page (short version, 2026-11) ----
+// Plain, first-person copy. Every fact here also lives in portfolio.js / resume.js.
+export const home = {
+  meta: "Product designer & engineer in Bharuch, India",
+  intro:
+    "More than 300 shops close their month on Shop-ERP, which I designed and coded. I co-own PrimeDigitals and lead UI/UX at UMM Digital.",
+  featured: [
+    { id: "shop-erp", kind: "Product", line: "Month-end billing for kirana stores and dairies. RFID check-in, invoices that arrive on WhatsApp." },
+    { id: "hazeberg", kind: "Client, UMM Digital", line: "A 13-page, animation-first site for a Workday consultancy, with a CMS they edit themselves." },
+    { id: "trade-crm", kind: "Product", line: "Every chemical-trade deal on one seven-step track, sorted by who owes the next move.", flat: true },
+    { id: "enda", kind: "Client, UMM Digital", line: "Brand site and Figma design system for a global footwear label, from research to React." },
   ],
-  engineering: [
-    "React, Next.js & TypeScript",
-    "Firebase — Auth, Firestore, Functions, Rules",
-    "PostgreSQL + Drizzle ORM",
-    "Multi-tenant SaaS architecture",
-    "WhatsApp & REST API integrations",
-    "GSAP, Framer Motion & WebGL",
-    "Performance — Lighthouse 90+",
-    "Playwright end-to-end testing",
+  more: [
+    { id: "touchpe", kind: "Product", line: "Prepaid tap-to-pay POS. The cashier flow takes under 3 seconds." },
+    { id: "vitran", kind: "Product", line: "B2B wholesale platform with tamper-proof GST invoices." },
+    { id: "primedigitals", kind: "Studio", line: "The product studio I co-own." },
+    { id: "patel-enterprise", kind: "Client", line: "Business site for an industrial roofing company." },
+    { id: "launchpad", kind: "Client, UMM Digital", line: "A clearer web presence for a global school." },
+    { id: "meditrack", kind: "Design study", line: "Healthcare SaaS, from 5 user interviews to 10 screens." },
+    { id: "fabric-tryon", kind: "Experiment", line: "AI virtual try-on for fashion stores." },
+    { id: "cryptodash", kind: "Experiment", line: "A live crypto market dashboard." },
   ],
+  about: {
+    lead: "I’m 22, I live in Bharuch, and I’ve been building software for real shops since 2024.",
+    body: "I like being on both sides of a product: sitting with the shop owner, drawing the screens, then writing the code. My favourite moment so far: a wholesaler telling me he’d actually use Vitran, because nobody could quietly edit an invoice after the fact.",
+    timeline: [
+      { org: "PrimeDigitals", role: "Co-owner", when: "Jul 2024 – now" },
+      { org: "UMM Digital", role: "UI/UX Designer", when: "Dec 2024 – now" },
+      { org: "Parul University", role: "B.Tech, Computer Science", when: "2021 – 2025" },
+    ],
+    tools: "Figma, React, Next.js, Firebase, PostgreSQL, Tailwind, GSAP",
+    languages: "English, Hindi, Gujarati",
+  },
+  contact: {
+    status: "Open to product teams of 10 to 150 people. Remote, anywhere in India, or I’ll relocate.",
+  },
 };
 
-export const process = [
-  {
-    n: "01", title: "Listen",
-    body: "Talk to the people who'll actually use it — before a single screen exists.",
-    proof: "MediTrack started with 5 user interviews.", href: "/work/meditrack",
+// ---- Scroll edition (2026-11) ----
+export const scenes = {
+  proof: {
+    label: "shops close their month on Shop-ERP",
+    line: "Month-end billing for kirana stores and dairies: RFID check-in, invoices that land on WhatsApp the same day.",
+    facts: ["10+ months live", "Zero critical downtime", "Designed and coded by me"],
   },
-  {
-    n: "02", title: "Shape",
-    body: "Flows, information architecture and wireframes — decide what the product is about.",
-    proof: "Trade CRM is organised around one question: who is this deal waiting on?", href: "/work/trade-crm",
+  cards: [
+    {
+      id: "touchpe", kind: "Product · PrimeDigitals",
+      line: "Prepaid tap-to-pay POS for local shops. Customers pay upfront, then tap a card to spend.",
+      facts: ["Cashier flow under 3 s", "Multi-tenant, 3-layer data isolation", "WhatsApp receipts"],
+    },
+    {
+      id: "trade-crm", kind: "Product · PrimeDigitals", flat: true,
+      line: "A CRM for chemical traders. Every deal on one seven-step track, sorted by who owes the next move.",
+      facts: ["Phase 1 live", "15-table multi-tenant schema", "Server-enforced roles"],
+    },
+    {
+      id: "hazeberg", kind: "Client · UMM Digital",
+      line: "An animation-first website for a Workday consultancy, with a CMS they edit without code.",
+      facts: ["13 pages", "WebGL hero", "Sanity CMS"],
+    },
+    {
+      id: "enda", kind: "Client · UMM Digital",
+      line: "Brand site and design system for a global footwear label, from research to React.",
+      facts: ["Sole contributor", "30+ component Figma system", "React production build"],
+    },
+  ],
+  more: ["vitran", "primedigitals", "patel-enterprise", "launchpad", "meditrack", "fabric-tryon", "cryptodash"],
+  about:
+    "I’m Krishna, 22, from Bharuch. I’ve been building software for real shops since 2024. I co-own PrimeDigitals, where we make the tools shops and traders run on, and I lead UI/UX at UMM Digital. I like both sides of a product: sitting with the shop owner, drawing the screens, then writing the code.",
+  island: {
+    kicker: "There’s another way in.",
+    body: "A small 3D island where the work hangs on the walls. Walk in, read a project, find the hidden stars.",
   },
-  {
-    n: "03", title: "Design",
-    body: "A system, not a pile of screens — tokens, components and the details that make it feel right.",
-    proof: "Enda's Figma design system: 30+ components, research to handoff.", href: "/work/enda",
-  },
-  {
-    n: "04", title: "Build",
-    body: "Production code from the same head that drew it — no handoff, no 'design intent' gap.",
-    proof: "Vitran: SHA-256 tamper-proof invoices and driverless Bluetooth printing.", href: "/work/vitran",
-  },
-  {
-    n: "05", title: "Ship & stay",
-    body: "Deploy, watch, support. A product isn't done when it launches.",
-    proof: "Shop-ERP: 10+ months in production, zero critical downtime.", href: "/work/shop-erp",
-  },
-];
-
-export const toolsWall = [
-  "Figma", "Photoshop", "Illustrator", "After Effects", "React", "Next.js", "TypeScript",
-  "Tailwind CSS", "GSAP", "Framer Motion", "WebGL", "Firebase", "PostgreSQL", "Drizzle",
-  "Sanity", "WhatsApp API", "Playwright", "Vercel", "Git", "Claude", "GitHub Copilot",
-];
-
-export const worldPortal = {
-  title: "There's another way in.",
-  body: "Prefer to explore? Walk a small 3D island and step inside the Quest Hall, the Builder's Forge, the Designer's Studio and the Engineer's Workshop, where the work hangs on the walls. Same work, played as a game.",
-  places: ["Quest Hall", "Builder's Forge", "Designer's Studio", "Engineer's Workshop", "The Inn"],
-};
-
-export const contact = {
-  lines: ["Let's build", "the whole thing."],
-  status: "Open to product-first teams of 10–150 — remote, pan-India, or relocation. Design-focused, engineering-focused or hybrid roles.",
 };

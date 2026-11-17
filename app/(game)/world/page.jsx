@@ -1,4 +1,5 @@
 import PixelWorld from "@/components/game/PixelWorld";
+import { legacyFonts } from "@/fonts/legacy";
 
 export const metadata = {
   title: "Krishna's World — an explorable pixel portfolio",
@@ -7,5 +8,9 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <PixelWorld />;
+  return (
+    <div className={`${legacyFonts} contents font-sans`}>
+      <PixelWorld />
+    </div>
+  );
 }

@@ -312,6 +312,51 @@ html.has-cursor .studio textarea { cursor: text; }
 a:hover > .roll > span, button:hover > .roll > span,
 a:focus-visible > .roll > span, button:focus-visible > .roll > span { transform: translateY(-1.2em); }
 
+/* ---- the human layer: serif voice, pen notes, photo prints ---- */
+/* Mona Sans runs wide for display type; names stretch further on hover */
+.studio .wide { font-stretch: 125%; }
+.studio .stretchy { font-stretch: 100%; transition: font-stretch 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.studio .group:hover .stretchy, .studio .group:focus-visible .stretchy { font-stretch: 125%; }
+@keyframes breathe-in { from { font-stretch: 104%; } to { font-stretch: 125%; } }
+/* hero headline: rises and widens into place (paints at frame one, so LCP is unaffected) */
+.studio .breathe { animation: studio-lift 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both, breathe-in 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both; }
+.studio .hand {
+  font-family: var(--font-hand), "Segoe Print", "Bradley Hand", cursive;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+/* a photo print: off-white border, soft paper shadow, a slight tilt */
+.studio .print {
+  background: #FCFBF8;
+  padding: clamp(6px, 0.7vw, 11px) clamp(6px, 0.7vw, 11px) clamp(26px, 2.6vw, 40px);
+  box-shadow: 0 1px 1px rgba(20, 16, 10, 0.05), 0 6px 14px -6px rgba(20, 16, 10, 0.16), 0 28px 60px -28px rgba(20, 16, 10, 0.32);
+  transform: rotate(var(--tilt, -2deg));
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .studio .print:hover { transform: rotate(calc(var(--tilt, -2deg) * 0.35)) translateY(-6px); }
+}
+@keyframes print-in {
+  from { opacity: 0; transform: translateY(28px) rotate(calc(var(--tilt, -2deg) * 2.2)); }
+  to { opacity: 1; transform: rotate(var(--tilt, -2deg)); }
+}
+.studio .print-in { animation: print-in 1.3s cubic-bezier(0.22, 1, 0.36, 1) both; }
+/* pen strokes draw themselves in (paths use pathLength="1") */
+/* opacity is part of the draw so the round caps don't leave a dot before it starts */
+@keyframes pen-draw { from { stroke-dashoffset: 1; opacity: 1; } to { stroke-dashoffset: 0; opacity: 1; } }
+.studio .pen path { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; }
+.studio .drawn .pen path { animation: pen-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) var(--d, 0.2s) both; }
+.studio .drawn .pen path + path { animation-delay: calc(var(--d, 0.2s) + 0.75s); animation-duration: 0.3s; }
+.studio .drawn .pen path + path + path { animation-delay: calc(var(--d, 0.2s) + 0.9s); }
+@keyframes pen-fade { from { opacity: 0; transform: translateY(5px) rotate(var(--r, 0deg)); } to { opacity: 1; transform: rotate(var(--r, 0deg)); } }
+.studio .pen-note { opacity: 0; transform: rotate(var(--r, 0deg)); }
+.studio .drawn .pen-note { animation: pen-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--d, 0.2s) + 0.2s) forwards; }
+/* links that underline themselves */
+.studio .ink-link { background: linear-gradient(currentColor, currentColor) 0 100% / 0% 1px no-repeat; transition: background-size 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.studio .ink-link:hover, .studio .ink-link:focus-visible, .studio .group:hover .ink-link, .studio .group:focus-visible .ink-link { background-size: 100% 1px; }
+.studio .ink-link.is-under { background-size: 100% 1px; }
+.studio .ink-link.is-under:hover { background-size: 0% 1px; background-position: 100% 100%; }
+
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
 

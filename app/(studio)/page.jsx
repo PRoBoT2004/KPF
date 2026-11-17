@@ -1,17 +1,15 @@
-import { Suspense } from "react";
-import Hero from "@/components/studio/Hero";
-import { VelocityMarquee, Manifesto, Stats } from "@/components/studio/Intro";
-import { FeaturedWork, WorkIndex } from "@/components/studio/Work";
-import DesignCode from "@/components/studio/DesignCode";
-import Process from "@/components/studio/Process";
-import About from "@/components/studio/About";
-import { WorldPortal, Contact } from "@/components/studio/Outro";
+import HeroScene from "@/components/studio/scroll/HeroScene";
+import WorkStack from "@/components/studio/scroll/WorkStack";
+import AboutScene from "@/components/studio/scroll/AboutScene";
+import IslandScene from "@/components/studio/scroll/IslandScene";
+import ContactScene from "@/components/studio/scroll/ContactScene";
+import ScrollProgress from "@/components/studio/scroll/ScrollProgress";
 import { identity } from "@/data/portfolio";
 
 export const metadata = {
   title: { absolute: "Krishna Mehta — Designer & Engineer" },
   description:
-    "Designer and engineer, one person, no handoff. Shop-ERP (300+ paying merchants), Touchpe, Vitran, Trade CRM, Hazeberg and Enda — research, interface, code and launch.",
+    "I design software, and then I build it. Shop-ERP (300+ paying merchants), Touchpe, Vitran, Trade CRM, Hazeberg and Enda, from the first interview to production.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Krishna Mehta — Designer & Engineer",
@@ -32,28 +30,18 @@ const personLd = {
   sameAs: [identity.githubUrl],
 };
 
-// Each below-the-fold section sits in its own Suspense boundary so React can
-// hydrate them as separate, interruptible units (keeps the main thread free
-// for the hero on slow phones).
+// A scroll story in five scenes: who I am and the 300 shops, the work
+// (stacking cards + the rest), about, the island door, and contact.
 export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
-      <Hero />
-      <Suspense><Manifesto /></Suspense>
-      <Suspense><Stats /></Suspense>
-      <Suspense><FeaturedWork /></Suspense>
-      <Suspense><WorkIndex /></Suspense>
-      <Suspense>
-        <div data-nav="light" className="border-y border-[var(--line-2)] py-[clamp(1rem,2vw,1.75rem)]">
-          <VelocityMarquee />
-        </div>
-      </Suspense>
-      <Suspense><DesignCode /></Suspense>
-      <Suspense><Process /></Suspense>
-      <Suspense><About /></Suspense>
-      <Suspense><WorldPortal /></Suspense>
-      <Suspense><Contact /></Suspense>
+      <ScrollProgress />
+      <HeroScene />
+      <WorkStack />
+      <AboutScene />
+      <IslandScene />
+      <ContactScene />
     </>
   );
 }

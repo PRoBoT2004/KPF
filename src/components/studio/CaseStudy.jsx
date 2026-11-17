@@ -26,7 +26,7 @@ function CaseHero({ p }) {
           <Label>{CAT[p.category]}{p.flagship ? " · Flagship" : ""}</Label>
         </div>
         <h1 className="mt-[clamp(2rem,5vw,4rem)] overflow-hidden">
-          <span className="rise block pb-[0.16em] text-[clamp(3.4rem,12.4vw,12.4rem)] font-medium leading-[0.84] tracking-[-0.068em]">{p.name}</span>
+          <span className="wide rise block pb-[0.14em] text-[clamp(2.6rem,8.4vw,8.6rem)] font-[560] leading-[0.94] tracking-[-0.05em]">{p.name}</span>
         </h1>
         <div className="mt-2 grid grid-cols-12 items-end gap-x-4 gap-y-6">
           <p className="lift col-span-12 max-w-[30ch] text-[clamp(1.3rem,2.3vw,2.1rem)] font-medium leading-[1.12] tracking-[-0.03em] text-[var(--ink-2)] md:col-span-7" style={{ animationDelay: "0.3s" }}>

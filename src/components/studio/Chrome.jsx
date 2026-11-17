@@ -15,7 +15,7 @@ import { Arrow, EASE, LenisContext, PAD, Roll, useScrollTo } from "./primitives"
 const NAV = [
   { href: "/#work", label: "Work" },
   { href: "/#about", label: "About" },
-  { href: "/#process", label: "Process" },
+  { href: "/resume", label: "Résumé" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -110,7 +110,6 @@ function Nav() {
 
   const onDark = dark && !open;
   const tone = onDark ? "text-[var(--on-dark)]" : "text-[var(--ink)]";
-  const sub = onDark ? "text-[var(--on-dark-mute)]" : "text-[var(--mute)]";
   const bg = !solid || open ? "bg-transparent" : onDark ? "bg-[#0A0A0A]/80 backdrop-blur-md" : "bg-white/85 backdrop-blur-md";
 
   return (
@@ -123,14 +122,13 @@ function Nav() {
       >
         <div className={`mx-auto grid max-w-[1920px] grid-cols-[1fr_auto] items-start gap-4 py-4 md:grid-cols-12 ${PAD} ${tone}`}>
           <Link href="/" onClick={(e) => go(e, "/#top")} className="col-span-1 leading-tight md:col-span-4">
-            <span className="block text-[15px] font-semibold tracking-[-0.02em]">Krishna Mehta</span>
-            <span className={`block text-[13px] ${sub}`}>Designer &amp; Engineer</span>
+            <span className="wide block text-[16px] font-[620] tracking-[-0.035em]">Krishna Mehta</span>
           </Link>
 
           <nav aria-label="Primary" className="hidden items-start justify-end gap-[clamp(1.25rem,3.4vw,3.5rem)] pt-[2px] md:col-span-6 md:col-start-5 md:flex">
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} onClick={(e) => go(e, n.href)}
-                className="text-[12.5px] font-medium uppercase tracking-[0.02em]">
+                className="text-[14.5px] font-medium">
                 <Roll>{n.label}</Roll>
               </Link>
             ))}
@@ -161,9 +159,9 @@ function Nav() {
                 <motion.div key={n.href} initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.7, ease: EASE, delay: 0.12 + i * 0.05 }}>
                   <Link href={n.href} onClick={(e) => go(e, n.href)}
-                    className="flex items-baseline justify-between border-b border-[var(--line)] py-4 text-[clamp(2.2rem,11vw,3.2rem)] font-medium leading-none tracking-[-0.045em]">
+                    className="wide flex items-baseline justify-between border-b border-[var(--line)] py-4 text-[clamp(1.9rem,9vw,2.9rem)] font-[560] leading-none tracking-[-0.05em]">
                     {n.label}
-                    <span className="text-[12px] font-medium tracking-normal text-[var(--mute)] tnum">[ 0{i + 1} ]</span>
+                    <span aria-hidden="true" className="text-[18px] text-[var(--mute)]">→</span>
                   </Link>
                 </motion.div>
               ))}

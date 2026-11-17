@@ -1,41 +1,5 @@
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import {
-  Instrument_Serif,
-  Plus_Jakarta_Sans,
-  JetBrains_Mono,
-  Pixelify_Sans,
-} from "next/font/google";
-
-const serif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const sans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  variable: "--font-mono",
-  display: "swap",
-});
-
-const pixel = Pixelify_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-pixel",
-  display: "swap",
-});
-
 export const metadata = {
   metadataBase: new URL("https://kpf-flame.vercel.app"),
   title: {
@@ -63,10 +27,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${serif.variable} ${sans.variable} ${mono.variable} ${pixel.variable}`}
-    >
+    <html lang="en">
       <body className="bg-base font-sans text-ink antialiased">
         {children}
         <Analytics />

@@ -1,27 +1,32 @@
 import Link from "next/link";
-import { Inter_Tight } from "next/font/google";
+import localFont from "next/font/local";
 
-const sans = Inter_Tight({ subsets: ["latin"], variable: "--font-studio", display: "swap" });
+const mona = localFont({
+  src: "../src/fonts/MonaSans.woff2",
+  variable: "--font-studio",
+  weight: "300 700",
+  display: "swap",
+  declarations: [{ prop: "font-stretch", value: "75% 125%" }],
+});
 
 export const metadata = { title: "Not found" };
 
 export default function NotFound() {
   return (
-    <main className={`${sans.variable} studio grid-rules flex min-h-[100svh] flex-col justify-between px-[clamp(1rem,2.2vw,2rem)] pb-6 pt-8`}>
+    <main className={`${mona.variable} studio flex min-h-[100svh] flex-col justify-between px-[clamp(1rem,2.2vw,2rem)] pb-6 pt-8`}>
       <div className="flex items-start justify-between text-[12.5px] uppercase">
         <Link href="/" className="font-medium normal-case">
-          <span className="block text-[15px] font-semibold tracking-[-0.02em]">Krishna Mehta</span>
-          <span className="block text-[13px] text-[var(--mute)]">Designer &amp; Engineer</span>
+          <span className="wide block text-[16px] font-[620] tracking-[-0.035em]">Krishna Mehta</span>
         </Link>
         <span className="text-[var(--mute)]">Error 404</span>
       </div>
       <div>
-        <h1 className="text-[clamp(3.4rem,13vw,13rem)] font-medium leading-[0.84] tracking-[-0.068em]">Off the map.</h1>
+        <h1 className="wide text-[clamp(3rem,11vw,11rem)] font-[560] leading-[0.9] tracking-[-0.055em]">Off the map.</h1>
         <div className="mt-8 flex flex-wrap items-center justify-between gap-6">
-          <p className="max-w-[36ch] text-[16px] text-[var(--ink-2)]">This page doesn&apos;t exist, but two worlds do.</p>
+          <p className="max-w-[36ch] text-[16px] text-[var(--ink-2)]">This page doesn&apos;t exist. The rest of the site does.</p>
           <div className="flex flex-wrap gap-3">
-            <Link href="/" className="rounded-full bg-[var(--ink)] px-5 py-3 text-[14px] font-medium text-[var(--paper)]">Studio site</Link>
-            <Link href="/world" className="rounded-full border border-[var(--ink)] px-5 py-[11px] text-[14px] font-medium">Pixel world</Link>
+            <Link href="/" className="rounded-full bg-[var(--ink)] px-5 py-3 text-[14px] font-medium text-[var(--paper)]">Back home</Link>
+            <Link href="/island" className="rounded-full border border-[var(--ink)] px-5 py-[11px] text-[14px] font-medium">The island</Link>
           </div>
         </div>
       </div>
