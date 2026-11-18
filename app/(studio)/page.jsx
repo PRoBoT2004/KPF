@@ -1,5 +1,6 @@
 import HeroScene from "@/components/studio/scroll/HeroScene";
-import WorkStack from "@/components/studio/scroll/WorkStack";
+import WorkReel from "@/components/studio/scroll/WorkReel";
+import MoreWork from "@/components/studio/scroll/MoreWork";
 import AboutScene from "@/components/studio/scroll/AboutScene";
 import IslandScene from "@/components/studio/scroll/IslandScene";
 import ContactScene from "@/components/studio/scroll/ContactScene";
@@ -9,7 +10,7 @@ import { identity } from "@/data/portfolio";
 export const metadata = {
   title: { absolute: "Krishna Mehta — Designer & Engineer" },
   description:
-    "I design software, and then I build it. Shop-ERP (300+ paying merchants), Touchpe, Vitran, Trade CRM, Hazeberg and Enda, from the first interview to production.",
+    "I design software, and then I build it. Shop-ERP (300+ paying merchants), Trade CRM, Hazeberg, ScanDine, Touchpe, Vitran and Enda, from the first interview to production.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Krishna Mehta — Designer & Engineer",
@@ -38,7 +39,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
       <ScrollProgress />
       <HeroScene />
-      <WorkStack />
+      <WorkReel /><MoreWork />
       <AboutScene />
       <IslandScene />
       <ContactScene />

@@ -301,6 +301,8 @@ html.has-cursor .studio textarea { cursor: text; }
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 .scroll-hint { animation: studio-scrollhint 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+.reel-hint { animation: studio-reelhint 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+@keyframes studio-reelhint { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
 
 @keyframes studio-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 .pulse-dot { animation: studio-pulse 2s ease-in-out infinite; }
@@ -375,4 +377,21 @@ a:focus-visible > .roll > span, button:focus-visible > .roll > span { transform:
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ---- hero canvas (2026-11-18) ---- */
+/* the second headline line types itself in, one letter at a time (opacity only, so no layout shift) */
+@keyframes hero-type { to { opacity: 1; } }
+.studio .type-in { opacity: 0; animation: hero-type 0.01s linear forwards; }
+/* a code caret */
+@keyframes hero-caret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.studio .caret { animation: hero-caret 1.05s steps(1) infinite; }
+/* the design-tool selection box draws in around a word */
+@keyframes hero-select { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
+.studio .sel-in { animation: hero-select 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both; }
+/* the board's dot grid */
+.studio .dot-grid { background-image: radial-gradient(rgba(0, 0, 0, 0.12) 1px, transparent 1.3px); background-size: 22px 22px; }
+@media (prefers-reduced-motion: reduce) {
+  .studio .type-in { opacity: 1; animation: none; }
+  .studio .caret { animation: none; }
 }

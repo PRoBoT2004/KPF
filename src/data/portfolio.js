@@ -288,6 +288,52 @@ export const projects = [
     decision:
       "Instead of organising the app around records (customers, products, invoices), I organised it around waiting: every deal always shows which team owes the next step, and for how long. That one choice shaped the dashboard, the board and every notification.",
   },
+  {
+    id: "scandine",
+    name: "ScanDine",
+    category: "Product", flagship: true, accent: "gold", image: ["/assets/work/scandine/cover.webp"],
+    cover: "/assets/work/scandine/cover.webp",
+    phone: [
+      { src: "/assets/work/scandine/menu.webp", alt: "ScanDine menu on a phone, with veg marks and Bestseller and Special badges" },
+      { src: "/assets/work/scandine/customise.webp", alt: "ScanDine customise sheet: size, add-ons and a note for the kitchen" },
+      { src: "/assets/work/scandine/cart.webp", alt: "ScanDine cart with the SGST and CGST split" },
+      { src: "/assets/work/scandine/status.webp", alt: "ScanDine live order status: placed, accepted, cooking" },
+    ],
+    discipline: "both",
+    org: "PrimeDigitals",
+    year: "2026",
+    subtitle: "QR dine-in ordering, kitchen display and billing for cafés",
+    blurb: "Scan the table, order from your phone, watch it cook.",
+    status: "Live demo · PrimeDigitals",
+    stat: { value: "0", label: "hardware: a QR sticker is the whole setup" },
+    tech: ["Next.js 16", "React 19", "TypeScript", "Supabase", "Postgres RLS", "Realtime", "Zustand", "Zod", "Tailwind v4"],
+    live: "https://scandine-demo.vercel.app",
+    problem:
+      "Cafés and small restaurants run on paper KOTs and manual billing. Orders get lost between the floor and the kitchen, guests can't see where their food is, and GST bills are typed up by hand. And nobody wants to buy hardware to fix it.",
+    built: [
+      "Customer web app (no install): scan the table's QR, browse, pick sizes and add-ons, order, then follow it live",
+      "Kitchen Display System: a live order board with an audio alert, moving each item from accepted to cooking to ready",
+      "One visit per table: a session lock, plus a share link or ask-to-join for friends at the same table",
+      "Bills with the SGST + CGST split, a printable receipt, and clearing the table for the next guests",
+      "Owner admin: menu builder with photos, veg marks, add-ons, sizes, sold-out and today's special",
+      "Food-court mode: one QR lists every store, with separate orders, bills and pickup tokens per store",
+    ],
+    design: [
+      "Phone-first for the guest, down to a 375 px screen; a two-pane menu on desktop",
+      "Veg / non-veg marks, Bestseller and Today's Special badges, clear sold-out states",
+      "A status screen that answers the guest's one question: where is my food?",
+    ],
+    engineering: [
+      "One Next.js 16 app with Supabase (Postgres, Auth, Realtime, Storage) as the whole backend",
+      "Guests write only through Postgres functions that check the table's QR and session token",
+      "Row-level security keeps every restaurant's data apart; Realtime pushes status to the guest's phone",
+      "A separate operator console, signed with its own JWT, for onboarding cafés",
+    ],
+    outcome:
+      "All five surfaces (customer app, kitchen display, owner admin, food court and operator console) work end to end on the live demo.",
+    reflection:
+      "The win was making the whole loop hardware-free. A sticker and the staff's own phones and tablets beat any POS terminal a small café would never buy.",
+  },
 
   // ---- Client / agency work (UMM Digital) ----
   {
